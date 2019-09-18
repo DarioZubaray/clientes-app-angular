@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from './cliente';
-import { CLIENTES } from './clientes.json';
+import { ClienteService } from '../../sevices/cliente.service';
 
 @Component({
   selector: 'app-clientes',
@@ -12,10 +12,12 @@ export class ClientesComponent implements OnInit {
   clientes: Cliente[] = [];
   habilitar: boolean = true;
 
-  constructor() { }
+  constructor(private _clienteService: ClienteService) { }
 
   ngOnInit() {
-    this.clientes = CLIENTES;
+    this._clienteService.getClientes().subscribe( resp => {
+      this.clientes = resp;
+    });
   }
 
 }

@@ -60,3 +60,12 @@ minimap
 platformio-ide-terminal
 v-bootstrap4
 ```
+
+# pug
+
+```
+npm run pug-it
+npm run pug-it:w
+```
+- pug-it: Compila todos los archivos pug en html en el mismo path
+- pug-it:w Idem anterior pero se queda escuchando cambios

@@ -1,0 +1,24 @@
+.card.border-dark.mt-3
+  .card-header
+    button.btn.btn-secondary.float-right(type="button", '(click)'="habilitar = !habilitar")
+    span {{ habilitar ? 'Ocultar' : 'Mostrar'}}
+    span(style="vertical-align: sub;") Clientes
+
+  div.card-body.text-dark('*ngIf'="habilitar")
+    h5.card-title Listado de clientes
+
+    table.table.table-hover
+      thead
+        tr
+          th id
+          th nombre
+          th apellido
+          th email
+          th fecha
+      tbody
+        tr('*ngFor'="let cliente of clientes")
+          td {{ cliente.id }}
+          td {{ cliente.nombre }}
+          td {{ cliente.apellido }}
+          td {{ cliente.email }}
+          td {{ cliente.createAt }}
