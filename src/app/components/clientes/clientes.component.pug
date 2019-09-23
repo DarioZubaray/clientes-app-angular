@@ -1,7 +1,7 @@
 .card.border-dark.mt-3
   .card-header
     button.btn.btn-secondary.float-right(type="button", '(click)'="habilitar = !habilitar")
-    span {{ habilitar ? 'Ocultar' : 'Mostrar'}}
+      span {{ habilitar ? 'Ocultar' : 'Mostrar'}}
     span(style="vertical-align: sub;") Clientes
 
   div.card-body.text-dark('*ngIf'="habilitar")
