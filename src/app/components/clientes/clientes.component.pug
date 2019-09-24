@@ -6,6 +6,8 @@
 
   div.card-body.text-dark('*ngIf'="habilitar")
     h5.card-title Listado de clientes
+    .my-2.text-left
+      button.btn.btn-rounded.btn-primary([routerLink]="['/clientes/forma']") Crear
 
     table.table.table-hover
       thead
@@ -15,6 +17,7 @@
           th apellido
           th email
           th fecha
+          th editar
       tbody
         tr('*ngFor'="let cliente of clientes")
           td {{ cliente.id }}
@@ -22,3 +25,5 @@
           td {{ cliente.apellido }}
           td {{ cliente.email }}
           td {{ cliente.createAt }}
+          td
+            button.btn.btn-primary(type='button', name='button', [routerlink]="['/clientes/forma', cliente.id]") Editar
