@@ -1,0 +1,19 @@
+.card.bg-dark.text-white.my-2
+  .card-header  {{ titulo }}
+  .card-body
+    form((ngSubmit)='create()')
+      .form-group.row
+        label.col-form-label.col-sm-2(for='') Nombre
+        .col-sm-6
+          input.form-control(type='text', [(ngModel)]='cliente.nombre', name='nombre')
+      .form-group.row
+        label.col-form-label.col-sm-2(for='') Apellido
+        .col-sm-6
+          input.form-control(type='text', [(ngModel)]='cliente.apellido', name='apellido')
+      .form-group.row
+        label.col-form-label.col-sm-2(for='') E-mail
+        .col-sm-6
+          input.form-control(type='text', [(ngModel)]='cliente.email', name='email')
+      .form-group.row
+        .col-sm-6
+          button.btn.btn-primary(role='button') Enviar
