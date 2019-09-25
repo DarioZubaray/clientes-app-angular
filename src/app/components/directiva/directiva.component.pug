@@ -1,0 +1,7 @@
+.card.border-dark.mt-3
+  .card-header
+    button.btn.btn-secondary.float-right(type='button', (click)='habilitar = !habilitar') {{ habilitar ? &apos;Ocultar&apos; : &apos;Mostrar&apos;}}
+    span(style='vertical-align: sub;') Listado de cursos
+  .card-body.text-dark(*ngif='habilitar')
+    ul.list-group
+      li.list-group-item(*ngfor='let curso of listaCurso') {{curso}}

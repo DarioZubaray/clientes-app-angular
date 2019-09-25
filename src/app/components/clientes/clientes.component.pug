@@ -9,7 +9,8 @@
     .my-2.text-left
       button.btn.btn-rounded.btn-primary([routerLink]="['/clientes/forma']") Crear
 
-    table.table.table-hover
+    .alert.alert-info('*ngIf'="clientes?.length === 0") No hay registros que mostrar.
+    table.table.table-hover('*ngIf'="clientes?.length > 0")
       thead
         tr
           th id
@@ -18,6 +19,7 @@
           th email
           th fecha
           th editar
+          th eliminar
       tbody
         tr('*ngFor'="let cliente of clientes")
           td {{ cliente.id }}
@@ -26,4 +28,6 @@
           td {{ cliente.email }}
           td {{ cliente.createAt }}
           td
-            button.btn.btn-primary(type='button', name='button', [routerlink]="['/clientes/forma', cliente.id]") Editar
+            button.btn.btn-primary.btn-sm(type='button', name='editar', [routerLink]="['/clientes/forma', cliente.id]") Editar
+          td
+            button.btn.btn-danger.btn-sm(type='button', name='eliminar', (click)="delete(cliente)") Eliminar

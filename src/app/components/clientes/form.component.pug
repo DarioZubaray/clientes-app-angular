@@ -1,7 +1,7 @@
 .card.bg-dark.text-white.my-2
   .card-header  {{ titulo }}
   .card-body
-    form((ngSubmit)='create()')
+    form
       .form-group.row
         label.col-form-label.col-sm-2(for='') Nombre
         .col-sm-6
@@ -16,4 +16,6 @@
           input.form-control(type='text', [(ngModel)]='cliente.email', name='email')
       .form-group.row
         .col-sm-6
-          button.btn.btn-primary(role='button') Enviar
+          button.btn.btn-primary(role='button', (ngSubmit)='create()', '*ngIf'="!cliente.id else elseBlock") Crear
+          ng-template(#elseBlock='')
+            button.btn.btn-primary(role='button', (ngSubmit)='create()') Editar 
