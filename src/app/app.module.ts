@@ -9,16 +9,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DirectivaComponent } from './components/directiva/directiva.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 
-import { RouterModule, Routes } from '@angular/router';
 import { FormComponent } from './components/clientes/form.component';
-
-const routes: Routes = [
-  {path: '', redirectTo: '/clientes', pathMatch: 'full'},
-  {path: 'clientes', component: ClientesComponent },
-  {path: 'directiva', component: DirectivaComponent },
-  {path: 'clientes/forma', component: FormComponent },
-  {path: 'clientes/forma/:id', component: FormComponent }
-]
+import { APP_ROUTES } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -31,7 +23,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    APP_ROUTES,
     HttpClientModule,
     FormsModule
   ],
