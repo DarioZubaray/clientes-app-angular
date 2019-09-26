@@ -32,7 +32,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  public create(): void {
+  create(): void {
     console.log('clicked');
     this._clienteService.create(this.cliente)
         .subscribe( cliente => {
@@ -41,7 +41,7 @@ export class FormComponent implements OnInit {
         });
   }
 
-  public update(): void {
+  update(): void {
     this._clienteService.update(this.cliente).subscribe(respuesta => {
       Swal.fire('Cliente Actualizado', `${respuesta.mensaje}: ${respuesta.cliente.nombre}`, 'success');
       this.router.navigate(['clientes']);

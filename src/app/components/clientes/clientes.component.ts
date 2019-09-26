@@ -44,7 +44,7 @@ export class ClientesComponent implements OnInit {
         this._clienteService.delete(cliente.id).subscribe( () => {
           swalWithBootstrapButtons.fire(
             '¡Borrado!',
-            'El cliente ${cliente.nombre} ${cliente.apellido} ha sido eliminado.',
+            `El cliente ${cliente.nombre} ${cliente.apellido} ha sido eliminado.`,
             'success'
           );
         });
