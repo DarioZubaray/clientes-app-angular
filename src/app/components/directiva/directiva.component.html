@@ -1,11 +1,11 @@
+
 <div class="card border-dark mt-3">
   <div class="card-header">
-    <button type="button" class="btn btn-secondary float-right" (click)="habilitar = !habilitar">{{ habilitar ? 'Ocultar' : 'Mostrar'}}</button>
-    <span style="vertical-align: sub;">Listado de cursos</span>
+    <button class="btn btn-secondary float-right" type="button" (click)="habilitar = !habilitar">{{ habilitar ? &apos;Ocultar&apos; : &apos;Mostrar&apos;}}</button><span style="vertical-align: sub;">Listado de cursos</span>
   </div>
-  <div class="card-body text-dark" *ngIf="habilitar">
+  <div class="card-body text-dark" *ngif="habilitar">
     <ul class="list-group">
-      <li *ngFor="let curso of listaCurso" class="list-group-item">{{curso}}</li>
+      <li class="list-group-item" *ngfor="let curso of listaCurso">{{curso}}</li>
     </ul>
   </div>
 </div>
