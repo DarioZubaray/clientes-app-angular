@@ -7,7 +7,7 @@
   div.card-body.text-dark('*ngIf'="habilitar")
     h5.card-title Listado de clientes
     .my-2.text-left
-      button.btn.btn-rounded.btn-primary([routerLink]="['/clientes/forma']") Crear
+      button.btn.btn-rounded.btn-success([routerLink]="['/clientes/forma']") Crear
 
     .alert.alert-info('*ngIf'="clientes?.length === 0") No hay registros que mostrar.
     table.table.table-hover('*ngIf'="clientes?.length > 0")
