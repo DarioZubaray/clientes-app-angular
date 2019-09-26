@@ -6,24 +6,24 @@
         label.col-form-label.col-sm-2(for='') Nombre
         .col-sm-6
           input.form-control(type='text', [(ngModel)]='cliente.nombre', name='nombre', required='', minlength='4', #nombre='ngModel')
-          .alert.alert-danger.my-3(*ngif='nombre.invalid && (nombre.dirty || nombre.touched)')
-            div(*ngif='nombre.errors.required') El Nombre es requerido
-            div(*ngif='nombre.errors.minlength') El Nombre debe tener al menos 4 caracteres
+          .alert.alert-danger.my-3(*ngIf='nombre.invalid && (nombre.dirty || nombre.touched)')
+            div(*ngIf='nombre.errors.required') El Nombre es requerido
+            div(*ngIf='nombre.errors.minlength') El Nombre debe tener al menos 4 caracteres
       .form-group.row
         label.col-form-label.col-sm-2(for='') Apellido
         .col-sm-6
           input.form-control(type='text', [(ngModel)]='cliente.apellido', name='apellido', required='', #apellido='ngModel')
-          .alert.alert-danger.my-3(*ngif='apellido.invalid && (apellido.dirty || apellido.touched)')
-            div(*ngif='apellido.errors.required') El Apellido es requerido
+          .alert.alert-danger.my-3(*ngIf='apellido.invalid && (apellido.dirty || apellido.touched)')
+            div(*ngIf='apellido.errors.required') El Apellido es requerido
       .form-group.row
         label.col-form-label.col-sm-2(for='') E-mail
         .col-sm-6
           input.form-control(type='text', [(ngModel)]='cliente.email', name='email', required='', email='', #email='ngModel')
-          .alert.alert-danger.my-3(*ngif='email.invalid && (email.dirty || email.touched)')
-            div(*ngif='email.errors.required') El Email es requerido
-            div(*ngif='email.errors.email') El emal debe tener formato correcto
+          .alert.alert-danger.my-3(*ngIf='email.invalid && (email.dirty || email.touched)')
+            div(*ngIf='email.errors.required') El Email es requerido
+            div(*ngIf='email.errors.email') El emal debe tener formato correcto
       .form-group.row
         .col-sm-6
-          button.btn.btn-primary(role='button', (ngSubmit)='create()', '*ngIf'="!cliente.id else elseBlock", [disable]='!clienteform.form.valid') Crear
+          button.btn.btn-primary(role='button', (ngSubmit)='create()', '*ngIf'="!cliente.id else elseBlock", [disabled]='!clienteform.form.valid') Crear
           ng-template(#elseBlock='')
-            button.btn.btn-primary(role='button', (ngSubmit)='create()', [disable]='!clienteform.form.valid') Editar 
+            button.btn.btn-primary(role='button', (ngSubmit)='create()', [disabled]='!clienteform.form.valid') Editar 

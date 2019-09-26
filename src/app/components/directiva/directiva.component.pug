@@ -2,6 +2,6 @@
   .card-header
     button.btn.btn-secondary.float-right(type='button', (click)='habilitar = !habilitar') {{ habilitar ? &apos;Ocultar&apos; : &apos;Mostrar&apos;}}
     span(style='vertical-align: sub;') Listado de cursos
-  .card-body.text-dark(*ngif='habilitar')
+  .card-body.text-dark(*ngIf='habilitar')
     ul.list-group
-      li.list-group-item(*ngfor='let curso of listaCurso') {{curso}}
+      li.list-group-item(*ngFor='let curso of listaCurso') {{curso}}

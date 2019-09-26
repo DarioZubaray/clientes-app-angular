@@ -3,9 +3,9 @@
   <div class="card-header">
     <button class="btn btn-secondary float-right" type="button" (click)="habilitar = !habilitar">{{ habilitar ? &apos;Ocultar&apos; : &apos;Mostrar&apos;}}</button><span style="vertical-align: sub;">Listado de cursos</span>
   </div>
-  <div class="card-body text-dark" *ngif="habilitar">
+  <div class="card-body text-dark" *ngIf="habilitar">
     <ul class="list-group">
-      <li class="list-group-item" *ngfor="let curso of listaCurso">{{curso}}</li>
+      <li class="list-group-item" *ngFor="let curso of listaCurso">{{curso}}</li>
     </ul>
   </div>
 </div>
