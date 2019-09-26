@@ -36,14 +36,14 @@ export class FormComponent implements OnInit {
     console.log('clicked');
     this._clienteService.create(this.cliente)
         .subscribe( cliente => {
-          Swal.fire('Nuevo Cliente', `Cliente ${cliente.nombre} creado con éxito`, 'success');
+          Swal.fire('Nuevo Cliente', `El cliente ${cliente.nombre} h sido creado con exito`, 'success');
           this.router.navigate(['clientes']);
         });
   }
 
   public update(): void {
-    this._clienteService.update(this.cliente).subscribe(cliente => {
-      Swal.fire('Cliente Actualizado', `Cliente ${cliente.nombre} actualizado con éxito`, 'success');
+    this._clienteService.update(this.cliente).subscribe(respuesta => {
+      Swal.fire('Cliente Actualizado', `${respuesta.mensaje}: ${respuesta.cliente.nombre}`, 'success');
       this.router.navigate(['clientes']);
     });
   }
