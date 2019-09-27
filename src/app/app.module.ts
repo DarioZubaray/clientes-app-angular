@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -11,6 +11,11 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 
 import { FormComponent } from './components/clientes/form.component';
 import { APP_ROUTES } from './app.routes';
+
+import { registerLocaleData } from '@angular/common';
+import localeES from '@angular/common/locales/es';
+
+registerLocaleData(localeES, 'es-AR');
 
 @NgModule({
   declarations: [
@@ -27,7 +32,7 @@ import { APP_ROUTES } from './app.routes';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'es-AR' }  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,6 +13,7 @@ export class FormComponent implements OnInit {
 
   titulo: string = "Crear nuevo cliente";
   private cliente: Cliente = new Cliente();
+  private errores: string[];
 
   constructor(private _clienteService: ClienteService,
               private router: Router,
@@ -38,6 +39,10 @@ export class FormComponent implements OnInit {
         .subscribe( cliente => {
           Swal.fire('Nuevo Cliente', `El cliente ${cliente.nombre} ha sido creado con éxito`, 'success');
           this.router.navigate(['clientes']);
+        },
+        err => {
+          this.errores = err.error.errors as string[];
+          console.error(err.error.errors);
         });
   }
 
@@ -45,6 +50,10 @@ export class FormComponent implements OnInit {
     this._clienteService.update(this.cliente).subscribe(respuesta => {
       Swal.fire('Cliente Actualizado', `${respuesta.mensaje}: ${respuesta.cliente.nombre}`, 'success');
       this.router.navigate(['clientes']);
+    },
+    err => {
+      this.errores = err.error.errors as string[];
+      console.error(err.error.errors);
     });
   }
 }

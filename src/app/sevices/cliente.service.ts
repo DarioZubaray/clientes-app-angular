@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { formatDate } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Cliente } from '../components/clientes/cliente';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -24,6 +25,9 @@ export class ClienteService {
     return this.http.post(this.urlEndpoint, cliente, { headers: this.httpHeaders}).pipe(
       map((response: any) => response.cliente as Cliente),
       catchError(e => {
+        if (e.status == 400) {
+          return throwError(e);
+        }
         Swal.fire(e.error.mensaje, e.error.error, 'error');
         return throwError(e);
       })
@@ -32,6 +36,20 @@ export class ClienteService {
 
   getCliente(id: number): Observable<any> {
     return this.http.get<any>(`${this.urlEndpoint}/${id}`).pipe(
+      tap(response => {
+        let clientes = response as Cliente[];
+        clientes.forEach( cliente => {
+          console.log(cliente.nombre)
+        })
+      }),
+      map(response => {
+        let clientes = response as Cliente[];
+        return clientes.map(cliente => {
+          cliente.nombre = cliente.nombre.toString()[0].toUpperCase() + cliente.nombre.toString().slice(1);
+          cliente.createAt = formatDate(cliente.createAt, 'dd/MM/yyyy', 'en-US');
+          return cliente;
+        });
+      }),
       catchError(e => {
         this.router.navigate(['clientes']);
         Swal.fire("Error al editar", e.error.mensaje, 'error');
@@ -43,6 +61,9 @@ export class ClienteService {
   update(cliente: Cliente): Observable<any> {
     return this.http.put<any>(`${this.urlEndpoint}/${cliente.id}`, cliente, { headers: this.httpHeaders}).pipe(
       catchError(e => {
+        if (e.status == 400) {
+          return throwError(e);
+        }
         Swal.fire(e.error.mensaje, e.error.error, 'error');
         return throwError(e);
       })

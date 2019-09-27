@@ -1,3 +1,6 @@
+ul.alert.alert-danger(*ngIf='errores?.length >0')
+  li(*ngFor='let err of errores') {{ err }}
+
 .card.bg-dark.text-white.my-2
   .card-header  {{ titulo }}
   .card-body
@@ -5,20 +8,20 @@
       .form-group.row
         label.col-form-label.col-sm-2(for='') Nombre
         .col-sm-6
-          input.form-control(type='text', [(ngModel)]='cliente.nombre', name='nombre', required='', minlength='4', #nombre='ngModel')
+          input.form-control(type='text', [(ngModel)]='cliente.nombre', name='nombre', #nombre='ngModel')
           .alert.alert-danger.my-3(*ngIf='nombre.invalid && (nombre.dirty || nombre.touched)')
             div(*ngIf='nombre.errors.required') El Nombre es requerido
             div(*ngIf='nombre.errors.minlength') El Nombre debe tener al menos 4 caracteres
       .form-group.row
         label.col-form-label.col-sm-2(for='') Apellido
         .col-sm-6
-          input.form-control(type='text', [(ngModel)]='cliente.apellido', name='apellido', required='', #apellido='ngModel')
+          input.form-control(type='text', [(ngModel)]='cliente.apellido', name='apellido', #apellido='ngModel')
           .alert.alert-danger.my-3(*ngIf='apellido.invalid && (apellido.dirty || apellido.touched)')
             div(*ngIf='apellido.errors.required') El Apellido es requerido
       .form-group.row
         label.col-form-label.col-sm-2(for='') E-mail
         .col-sm-6
-          input.form-control(type='text', [(ngModel)]='cliente.email', name='email', required='', email='', #email='ngModel')
+          input.form-control(type='text', [(ngModel)]='cliente.email', name='email', #email='ngModel')
           .alert.alert-danger.my-3(*ngIf='email.invalid && (email.dirty || email.touched)')
             div(*ngIf='email.errors.required') El Email es requerido
             div(*ngIf='email.errors.email') El emal debe tener formato correcto
