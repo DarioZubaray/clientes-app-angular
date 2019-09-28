@@ -4,7 +4,7 @@ ul.alert.alert-danger(*ngIf='errores?.length >0')
 .card.bg-dark.text-white.my-2
   .card-header  {{ titulo }}
   .card-body
-    form(#clienteform='ngForm', (ngSubmit)='this.create()')
+    form(#clienteForm='ngForm')
       .form-group.row
         label.col-form-label.col-sm-2(for='') Nombre
         .col-sm-6
@@ -27,6 +27,6 @@ ul.alert.alert-danger(*ngIf='errores?.length >0')
             div(*ngIf='email.errors.email') El emal debe tener formato correcto
       .form-group.row
         .col-sm-6
-          input.btn.btn-primary(type="submit", '*ngIf'="!cliente.id else elseBlock", [disabled]='!clienteform.form.valid', value="Crear")
+          button.btn.btn-primary(role='button', (click)='create()', *ngIf='!cliente.id else elseBlock', [disabled]='!clienteForm.form.valid') Crear
           ng-template(#elseBlock='')
-            input.btn.btn-primary(type="submit", [disabled]='!clienteform.form.valid', value="Editar")
+            button.btn.btn-primary(role='button', (click)='update()', [disabled]='!clienteForm.form.valid') Editar

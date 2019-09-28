@@ -17,25 +17,8 @@ export class ClienteService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  getClientes(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>(this.urlEndpoint);
-  }
-
-  create(cliente: Cliente): Observable<Cliente> {
-    return this.http.post(this.urlEndpoint, cliente, { headers: this.httpHeaders}).pipe(
-      map((response: any) => response.cliente as Cliente),
-      catchError(e => {
-        if (e.status == 400) {
-          return throwError(e);
-        }
-        swal(e.error.mensaje, e.error.error, 'error');
-        return throwError(e);
-      })
-    );
-  }
-
-  getCliente(id: number): Observable<any> {
-    return this.http.get<any>(`${this.urlEndpoint}/${id}`).pipe(
+  getClientes(): Observable<any> {
+    return this.http.get(this.urlEndpoint).pipe(
       tap(response => {
         let clientes = response as Cliente[];
         clientes.forEach( cliente => {
@@ -53,6 +36,30 @@ export class ClienteService {
       catchError(e => {
         this.router.navigate(['clientes']);
         swal("Error al editar", e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    );
+  }
+
+  create(cliente: Cliente): Observable<Cliente> {
+    return this.http.post(this.urlEndpoint, cliente, { headers: this.httpHeaders}).pipe(
+      map((response: any) => response.cliente as Cliente),
+      catchError(e => {
+        if (e.status == 400) {
+          return throwError(e);
+        }
+        swal(e.error.mensaje, e.error.error, 'error');
+        return throwError(e);
+      })
+    );
+  }
+
+  getCliente(id: number): Observable<any> {
+    return this.http.get(`${this.urlEndpoint}/${id}`).pipe(
+      catchError(e => {
+        this.router.navigate(['/clientes']);
+        console.error(e.error.mensaje);
+        swal('Error al editar', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
