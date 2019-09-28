@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -8,8 +8,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DirectivaComponent } from './components/directiva/directiva.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
-
 import { FormComponent } from './components/clientes/form.component';
+import { PaginadorComponent } from './components/paginador/paginador.component';
+
 import { APP_ROUTES } from './app.routes';
 
 import { registerLocaleData } from '@angular/common';
@@ -24,7 +25,8 @@ registerLocaleData(localeES, 'es-AR');
     FooterComponent,
     DirectivaComponent,
     ClientesComponent,
-    FormComponent
+    FormComponent,
+    PaginadorComponent
   ],
   imports: [
     BrowserModule,

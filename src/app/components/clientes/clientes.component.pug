@@ -31,3 +31,4 @@
             button.btn.btn-primary.btn-sm(type='button', name='editar', [routerLink]="['/clientes/forma', cliente.id]") Editar
           td
             button.btn.btn-danger.btn-sm(type='button', name='eliminar', (click)="delete(cliente)") Eliminar
+    app-paginador(*ngIf="paginador", [paginador]='paginador')

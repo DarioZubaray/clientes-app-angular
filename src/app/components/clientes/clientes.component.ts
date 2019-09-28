@@ -15,6 +15,7 @@ export class ClientesComponent implements OnInit {
   clientes: Cliente[] = [];
   habilitar: boolean = true;
   pagina: number = 0;
+  paginador: any;
 
   constructor(private _clienteService: ClienteService, private activatedRouter: ActivatedRoute) { }
 
@@ -26,6 +27,8 @@ export class ClientesComponent implements OnInit {
       }
       this._clienteService.getClientes(this.pagina).subscribe( resp => {
         this.clientes = resp.content;
+        this.paginador = resp;
+        console.log(this.paginador);
       });
     });
   }
