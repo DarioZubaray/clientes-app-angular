@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Cliente } from './cliente';
 import { ClienteService } from '../../sevices/cliente.service';
 import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-clientes',
@@ -12,12 +14,19 @@ export class ClientesComponent implements OnInit {
 
   clientes: Cliente[] = [];
   habilitar: boolean = true;
+  pagina: number = 0;
 
-  constructor(private _clienteService: ClienteService) { }
+  constructor(private _clienteService: ClienteService, private activatedRouter: ActivatedRoute) { }
 
   ngOnInit() {
-    this._clienteService.getClientes().subscribe( resp => {
-      this.clientes = resp;
+    this.activatedRouter.params.subscribe( params => {
+      let page = params['page'];
+      if (page) {
+        this.pagina = page;
+      }
+      this._clienteService.getClientes(this.pagina).subscribe( resp => {
+        this.clientes = resp.content;
+      });
     });
   }
 

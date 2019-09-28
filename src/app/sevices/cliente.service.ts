@@ -17,21 +17,21 @@ export class ClienteService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  getClientes(): Observable<any> {
-    return this.http.get(this.urlEndpoint).pipe(
-      tap(response => {
-        let clientes = response as Cliente[];
-        clientes.forEach( cliente => {
+  getClientes(page: number): Observable<any> {
+    return this.http.get(this.urlEndpoint + '/page/' + page).pipe(
+      tap((response: any) => {
+        (response.content as Cliente[]).forEach( cliente => {
           console.log(cliente.nombre)
         })
       }),
-      map(response => {
-        let clientes = response as Cliente[];
-        return clientes.map(cliente => {
+      map((response: any) => {
+        let clientes = response.content as Cliente[];
+        clientes.map(cliente => {
           cliente.nombre = cliente.nombre.toString()[0].toUpperCase() + cliente.nombre.toString().slice(1);
           cliente.createAt = formatDate(cliente.createAt, 'dd/MM/yyyy', 'en-US');
           return cliente;
         });
+        return response;
       }),
       catchError(e => {
         this.router.navigate(['clientes']);
