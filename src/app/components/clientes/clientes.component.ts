@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from './cliente';
 import { ClienteService } from '../../sevices/cliente.service';
-import Swal from 'sweetalert2';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clientes',
@@ -22,33 +22,36 @@ export class ClientesComponent implements OnInit {
   }
 
   public delete(cliente: Cliente): void {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    });
 
-    swalWithBootstrapButtons.fire({
-      title: '¿Está seguro?',
+    swal({
+      title: 'Está seguro?',
       text: `¿Seguro que desea eliminar al cliente ${cliente.nombre} ${cliente.apellido}?`,
       type: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Si, ¡Borrarlo!',
-      cancelButtonText: 'No, ¡Cancelar!',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'No, cancelar!',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false,
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        this.clientes = this.clientes.filter(cli => cli !== cliente);
-        this._clienteService.delete(cliente.id).subscribe( () => {
-          swalWithBootstrapButtons.fire(
-            '¡Borrado!',
-            `El cliente ${cliente.nombre} ${cliente.apellido} ha sido eliminado.`,
-            'success'
-          );
-        });
+
+        this._clienteService.delete(cliente.id).subscribe(
+          () => {
+            this.clientes = this.clientes.filter(cli => cli !== cliente)
+            swal(
+              'Cliente Eliminado!',
+              `Cliente ${cliente.nombre} eliminado con éxito.`,
+              'success'
+            )
+          }
+        )
+
       }
     });
+
   }
 }

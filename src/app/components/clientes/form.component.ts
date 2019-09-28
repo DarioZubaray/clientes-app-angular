@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from './cliente';
 import { ClienteService } from '../../sevices/cliente.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import Swal from 'sweetalert2';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form',
@@ -37,7 +37,7 @@ export class FormComponent implements OnInit {
     console.log('clicked');
     this._clienteService.create(this.cliente)
         .subscribe( cliente => {
-          Swal.fire('Nuevo Cliente', `El cliente ${cliente.nombre} ha sido creado con éxito`, 'success');
+          swal('Nuevo Cliente', `El cliente ${cliente.nombre} ha sido creado con éxito`, 'success');
           this.router.navigate(['clientes']);
         },
         err => {
@@ -48,7 +48,7 @@ export class FormComponent implements OnInit {
 
   update(): void {
     this._clienteService.update(this.cliente).subscribe(respuesta => {
-      Swal.fire('Cliente Actualizado', `${respuesta.mensaje}: ${respuesta.cliente.nombre}`, 'success');
+      swal('Cliente Actualizado', `${respuesta.mensaje}: ${respuesta.cliente.nombre}`, 'success');
       this.router.navigate(['clientes']);
     },
     err => {
