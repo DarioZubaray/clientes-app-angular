@@ -34,12 +34,8 @@
       </div>
       <div class="form-group row">
         <label class="col-form-label col-sm-2" for="">Fecha</label>
-        <div class="col-sm-4">
-          <input class="form-control" [matDatepicker]="miDatepicker" type="date" [(ngModel)]="cliente.createAt" name="createAt" #createAt="ngModel"/>
-        </div>
-        <div class="col-sm-2 text-left">
-          <mat-datepicker-toggle [for]="miDatepicker"></mat-datepicker-toggle>
-          <mat-datepicker #miDatepicker=""></mat-datepicker>
+        <div class="col-sm-6">
+          <input class="form-control" type="date" [(ngModel)]="cliente.createAt" name="createAt" #createAt="ngModel"/>
           <div class="alert alert-danger my-3" *ngIf="createAt.invalid &amp;&amp; (createAt.dirty || createAt.touched)">
             <div *ngIf="createAt.errors.required">La fecha es requerida</div>
           </div>

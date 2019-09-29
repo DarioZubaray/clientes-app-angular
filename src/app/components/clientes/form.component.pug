@@ -24,11 +24,8 @@
             div(*ngIf='email.errors.email') El emal debe tener formato correcto
       .form-group.row
         label.col-form-label.col-sm-2(for='') Fecha
-        .col-sm-4
-          input.form-control([matDatepicker]='miDatepicker', type='date', [(ngModel)]='cliente.createAt', name='createAt', #createAt='ngModel')
-        .col-sm-2.text-left
-          mat-datepicker-toggle([for]='miDatepicker')
-          mat-datepicker(#miDatepicker='')
+        .col-sm-6
+          input.form-control(type='date', [(ngModel)]='cliente.createAt', name='createAt', #createAt='ngModel')
 
           .alert.alert-danger.my-3(*ngIf='createAt.invalid && (createAt.dirty || createAt.touched)')
             div(*ngIf='createAt.errors.required') La fecha es requerida

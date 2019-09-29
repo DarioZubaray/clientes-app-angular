@@ -13,8 +13,6 @@ import { PaginadorComponent } from './components/paginador/paginador.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDatepickerModule } from '@angular/material';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { APP_ROUTES } from './app.routes';
 
@@ -40,8 +38,6 @@ registerLocaleData(localeES, 'es-AR');
     FormsModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    MatDatepickerModule,
-    MatMomentDateModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-AR' }  ],
   bootstrap: [AppComponent]
