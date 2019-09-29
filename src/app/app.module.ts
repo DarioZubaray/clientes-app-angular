@@ -11,6 +11,7 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { FormComponent } from './components/clientes/form.component';
 import { PaginadorComponent } from './components/paginador/paginador.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { APP_ROUTES } from './app.routes';
 
 import { registerLocaleData } from '@angular/common';
@@ -26,13 +27,14 @@ registerLocaleData(localeES, 'es-AR');
     DirectivaComponent,
     ClientesComponent,
     FormComponent,
-    PaginadorComponent
+    PaginadorComponent,
   ],
   imports: [
     BrowserModule,
     APP_ROUTES,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-AR' }  ],
   bootstrap: [AppComponent]

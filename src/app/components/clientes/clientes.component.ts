@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cliente } from './cliente';
 import { ClienteService } from '../../sevices/cliente.service';
-import swal from 'sweetalert2';
+import { faPlus, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clientes',
@@ -16,6 +17,9 @@ export class ClientesComponent implements OnInit {
   habilitar: boolean = true;
   pagina: number = 0;
   paginador: any;
+  faPlus = faPlus;
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
 
   constructor(private _clienteService: ClienteService, private activatedRouter: ActivatedRoute) { }
 

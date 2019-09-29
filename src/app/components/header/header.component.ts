@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faDragon } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  faDragon = faDragon;
   titulo: string = 'AngularSpring';
   constructor() { }
 

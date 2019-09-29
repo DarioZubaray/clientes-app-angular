@@ -8,6 +8,7 @@
     h5.card-title Listado de clientes
     .my-2.text-left
       button.btn.btn-rounded.btn-success([routerLink]="['/clientes/forma']") Crear
+        fa-icon.text-white.mx-1([icon]="faPlus")
 
     .alert.alert-info('*ngIf'="clientes?.length === 0") No hay registros que mostrar.
     table.table.table-hover('*ngIf'="clientes?.length > 0")
@@ -29,6 +30,8 @@
           td {{ cliente.createAt }}
           td
             button.btn.btn-primary.btn-sm(type='button', name='editar', [routerLink]="['/clientes/forma', cliente.id]") Editar
+              fa-icon.text-white.mx-1([icon]="faEdit")
           td
             button.btn.btn-danger.btn-sm(type='button', name='eliminar', (click)="delete(cliente)") Eliminar
+              fa-icon.text-white.mx-1([icon]="faTrashAlt")
     app-paginador(*ngIf="paginador", [paginador]='paginador')
