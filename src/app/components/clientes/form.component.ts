@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDatepicker } from '@angular/material';
 import { Cliente } from './cliente';
 import { ClienteService } from '../../sevices/cliente.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styles: []
+  styles: ['.mat-datepicker-toggle { color: white}']
 })
 export class FormComponent implements OnInit {
 
   titulo: string = "Crear nuevo cliente";
   private cliente: Cliente = new Cliente();
   private errores: string[];
+  @ViewChild(MatDatepicker) miDatepicker: MatDatepicker<Date>;
 
   constructor(private _clienteService: ClienteService,
               private router: Router,

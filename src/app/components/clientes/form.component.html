@@ -1,7 +1,4 @@
 
-<ul class="alert alert-danger" *ngIf="errores?.length &gt;0">
-  <li *ngFor="let err of errores">{{ err }}</li>
-</ul>
 <div class="card bg-dark text-white my-2">
   <div class="card-header"> {{ titulo }}</div>
   <div class="card-body">
@@ -36,6 +33,19 @@
         </div>
       </div>
       <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="">Fecha</label>
+        <div class="col-sm-4">
+          <input class="form-control" [matDatepicker]="miDatepicker" type="date" [(ngModel)]="cliente.createAt" name="createAt" #createAt="ngModel"/>
+        </div>
+        <div class="col-sm-2 text-left">
+          <mat-datepicker-toggle [for]="miDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker #miDatepicker=""></mat-datepicker>
+          <div class="alert alert-danger my-3" *ngIf="createAt.invalid &amp;&amp; (createAt.dirty || createAt.touched)">
+            <div *ngIf="createAt.errors.required">La fecha es requerida</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
         <div class="col-sm-6">
           <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!cliente.id else elseBlock" [disabled]="!clienteForm.form.valid">Crear</button>
           <ng-template #elseBlock="">
@@ -45,4 +55,9 @@
       </div>
     </form>
   </div>
+</div>
+<div class="alert alert-danger text-left" *ngIf="errores?.length &gt;0">
+  <ul class="ml-1">
+    <li *ngFor="let err of errores">{{ err }}</li>
+  </ul>
 </div>
