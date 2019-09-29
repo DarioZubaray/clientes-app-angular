@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { formatDate } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Cliente } from '../components/clientes/cliente';
 import { Observable, throwError } from 'rxjs';
@@ -87,19 +87,13 @@ export class ClienteService {
     );;
   }
 
-  subirFoto(archivo: File, id): Observable<Cliente> {
+  subirFoto(archivo: File, id): Observable<HttpEvent<{}>> {
     let formData = new FormData();
     formData.append("archivo", archivo);
     formData.append("id", id);
-    return this.http.post(`${this.urlEndpoint}/upload`, formData).pipe(
-      map((response: any) => response.cliente as Cliente),
-      catchError(e => {
-        if (e.status == 400) {
-          return throwError(e);
-        }
-        swal(e.error.mensaje, e.error.error, 'error');
-        return throwError(e);
-      })
-    );
+
+    const req = new HttpRequest('POST', `${this.urlEndpoint}/upload`, formData, { reportProgress: true})
+
+    return this.http.request(req);
   }
 }
