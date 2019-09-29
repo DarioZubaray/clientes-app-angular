@@ -23,7 +23,8 @@
           th eliminar
       tbody
         tr('*ngFor'="let cliente of clientes")
-          td {{ cliente.id }}
+          td
+              button.btn.btn-primary.btn-sm(type='button', name='detalle',[routerLink]="['/clientes/detalle', cliente.id]") {{ cliente.id }}
           td {{ cliente.nombre }}
           td {{ cliente.apellido }}
           td {{ cliente.email }}

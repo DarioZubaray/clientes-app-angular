@@ -1,0 +1,15 @@
+
+<div class="card bg-dark text-white">
+  <div class="card-header">{{ titulo }}</div>
+  <div class="card-body">
+    <div class="input-group">
+      <div class="custom-file">
+        <input class="custom-file-input" id="inputGroupFile04" (change)="seleccionarFoto($event)" type="file" aria-describedby="inputGroupFileAddon04"/>
+        <label class="custom-file-label" for="inputGroupFile04">Subir Foto</label>
+      </div>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" id="inputGroupFileAddon04" (click)="subirFoto()" type="button">Subir</button>
+      </div>
+    </div>
+  </div>
+</div>

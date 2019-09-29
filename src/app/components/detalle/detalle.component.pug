@@ -1,0 +1,9 @@
+.card.bg-dark.text-white
+  .card-header {{ titulo }}
+  .card-body
+    .input-group
+      .custom-file
+        input#inputGroupFile04.custom-file-input((change)="seleccionarFoto($event)", type='file', aria-describedby='inputGroupFileAddon04')
+        label.custom-file-label(for='inputGroupFile04') Subir Foto
+      .input-group-append
+        button#inputGroupFileAddon04.btn.btn-outline-secondary((click)="subirFoto()", type='button') Subir

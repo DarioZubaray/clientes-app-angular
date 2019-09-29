@@ -55,6 +55,7 @@ export class ClienteService {
   }
 
   getCliente(id: number): Observable<any> {
+    console.log("getCliente: " + id);
     return this.http.get(`${this.urlEndpoint}/${id}`).pipe(
       catchError(e => {
         this.router.navigate(['/clientes']);
@@ -84,5 +85,21 @@ export class ClienteService {
         return throwError(e);
       })
     );;
+  }
+
+  subirFoto(archivo: File, id): Observable<Cliente> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id", id);
+    return this.http.post(`${this.urlEndpoint}/upload`, formData).pipe(
+      map((response: any) => response.cliente as Cliente),
+      catchError(e => {
+        if (e.status == 400) {
+          return throwError(e);
+        }
+        swal(e.error.mensaje, e.error.error, 'error');
+        return throwError(e);
+      })
+    );
   }
 }
