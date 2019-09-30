@@ -1,5 +1,5 @@
 
-<detalle-cliente [cliente]="clienteSeleccionado" *ngIf="clienteSeleccionado"></detalle-cliente>
+<detalle-cliente *ngIf="clienteSeleccionado" [cliente]="clienteSeleccionado"></detalle-cliente>
 <div class="card border-dark bg-transparent mt-3">
   <div class="card-header">
     <button class="btn btn-secondary float-right" type="button" (click)="habilitar = !habilitar"><span>{{ habilitar ? 'Ocultar' : 'Mostrar'}}</span></button><span style="vertical-align: sub;">Clientes</span>
@@ -27,7 +27,7 @@
       <tbody>
         <tr *ngFor="let cliente of clientes">
           <td>
-            <button class="btn btn-primary btn-sm" type="button" name="detalle" (click)="this.abrirModal(cliente)">{{ cliente.id }}</button>
+            <button class="btn btn-secondary btn-sm" type="button" name="detalle" (click)="mostrarModal(cliente)">{{ cliente.id }}</button>
           </td>
           <td>{{ cliente.nombre }}</td>
           <td>{{ cliente.apellido }}</td>

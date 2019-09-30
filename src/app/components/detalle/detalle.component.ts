@@ -8,7 +8,7 @@ import { ModalService } from '../../services/modal.service';
 @Component({
   selector: 'detalle-cliente',
   templateUrl: './detalle.component.html',
-  styles: ['.moda { display: block;}']
+  styleUrls: ['./detalle.component.css']
 })
 export class DetalleComponent implements OnInit {
 
@@ -18,7 +18,7 @@ export class DetalleComponent implements OnInit {
   private fotoSeleccionada: File;
 
   constructor(private _clienteService: ClienteService,
-              private _modalService: ModalService) { }
+              public _modalService: ModalService) { }
 
   ngOnInit() {
 

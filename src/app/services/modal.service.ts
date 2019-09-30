@@ -9,6 +9,7 @@ export class ModalService {
   constructor() { }
 
   abrirModal() {
+    console.log('ModalService - abrirModal')
     this.modal = true;
   }
 
