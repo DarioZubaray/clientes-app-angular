@@ -24,6 +24,6 @@
                 .progress(*ngIf='progreso > 0')
                   .progress-bar.progress-bar-striped(role='progressbar', [style.width.%]='progreso', attr.aria-valuenow='{{progreso}}', aria-valuemin='0', aria-valuemax='100') {{ progreso}} %
               .col-sm
-                img.img.thumbnail.rounded(src='http://localhost:8080/api/clientes/uploads/img/{{cliente.foto}}', *ngIf='cliente?.foto', alt='{{cliente.foto}}')
+                img.img-fluid.img.thumbnail.rounded(src='http://localhost:8080/api/clientes/uploads/img/{{cliente.foto}}', *ngIf='cliente?.foto', alt='{{cliente.foto}}')
         .modal-footer
           button.btn.btn-secondary((click)='cerrarModal()', type='button', data-dismiss='modal') Cerrar

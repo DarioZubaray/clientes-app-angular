@@ -10,7 +10,7 @@ import { ModalService } from '../../services/modal.service';
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
-  styles: []
+  styles: ['.avatar-sm { width: 64px }']
 })
 export class ClientesComponent implements OnInit {
 
@@ -37,6 +37,15 @@ export class ClientesComponent implements OnInit {
         this.clientes = resp.content;
         this.paginador = resp;
         console.log(this.paginador);
+      });
+    });
+
+    this._modalService.notificarUpload.subscribe(clienteEmitido => {
+      this.clientes = this.clientes.map(clienteOriginal => {
+        if(clienteOriginal.id == clienteEmitido.id) {
+          clienteOriginal.foto = clienteEmitido.foto
+        }
+        return clienteOriginal;
       });
     });
   }

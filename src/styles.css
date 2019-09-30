@@ -11,3 +11,7 @@ body {
   background: url(assets/img/logo-imago-solo-bg.png) no-repeat bottom right fixed;
   margin: 0; font-family: 'Roboto', sans-serif;
 }
+
+.pointer {
+  cursor: pointer;
+}
