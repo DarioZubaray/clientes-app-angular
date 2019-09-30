@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cliente } from './cliente';
-import { ClienteService } from '../../sevices/cliente.service';
+import { ClienteService } from '../../services/cliente.service';
 import { faPlus, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import swal from 'sweetalert2';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-clientes',
@@ -14,6 +15,7 @@ import swal from 'sweetalert2';
 export class ClientesComponent implements OnInit {
 
   clientes: Cliente[] = [];
+  clienteSeleccionado: Cliente;
   habilitar: boolean = true;
   pagina: number = 0;
   paginador: any;
@@ -21,7 +23,9 @@ export class ClientesComponent implements OnInit {
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
 
-  constructor(private _clienteService: ClienteService, private activatedRouter: ActivatedRoute) { }
+  constructor(private _clienteService: ClienteService,
+              private _modalService: ModalService,
+              private activatedRouter: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRouter.params.subscribe( params => {
@@ -68,6 +72,10 @@ export class ClientesComponent implements OnInit {
 
       }
     });
+  }
 
+  abrirModal(cliente: Cliente) {
+    this.clienteSeleccionado = cliente;
+    this._modalService.abrirModal();
   }
 }

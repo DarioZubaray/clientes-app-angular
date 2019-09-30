@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Cliente } from './cliente';
-import { ClienteService } from '../../sevices/cliente.service';
+import { ClienteService } from '../../services/cliente.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 

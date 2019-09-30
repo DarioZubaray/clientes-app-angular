@@ -1,22 +1,28 @@
-.card.bg-dark.text-white
-  .card-header {{ titulo }}
-  .card-body
-    .container
-      .row
-        .col-sm
-          ul.list-group.text-dark.mb-3(*ngIf="cliente")
-            li.list-group-item.active {{ cliente.nombre }}
-            li.list-group-item {{ cliente.apellido }}
-            li.list-group-item {{ cliente.email }}
-            li.list-group-item {{ cliente.createAt }}
-          .input-group.mb-3
-            .custom-file
-              input#inputGroupFile04.custom-file-input((change)="seleccionarFoto($event)", type='file', aria-describedby='inputGroupFileAddon04')
-              label.custom-file-label(for='inputGroupFile04') Seleccionar Foto
-            .input-group-append
-              button#inputGroupFileAddon04.btn.btn-outline-secondary((click)="subirFoto()", [disabled]="!fotoSeleccionada", type='button') Subir
-          .progress(*ngIf="progreso > 0")
-            .progress-bar.progress-bar-striped(role='progressbar', [style.width.%]='progreso', attr.aria-valuenow='{{progreso}}', aria-valuemin='0', aria-valuemax='100') {{ progreso}} %
-
-        .col-sm
-          img.img.thumbnail.rounded(src="http://localhost:8080/api/clientes/uploads/img/{{cliente.foto}}", *ngIf="cliente?.foto", alt="{{cliente.foto}}")
+.modal(*ngIf='_modalService.modal', tabindex='-1', role='dialog')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5.modal-title {{titulo}}
+        button.close((click)='cerrarModal()', type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+      .modal-body
+        .container
+          .row
+            .col-sm
+              ul.list-group.text-dark.mb-3(*ngIf='cliente')
+                li.list-group-item.active {{ cliente.nombre }}
+                li.list-group-item {{ cliente.apellido }}
+                li.list-group-item {{ cliente.email }}
+                li.list-group-item {{ cliente.createAt }}
+              .input-group.mb-3
+                .custom-file
+                  input#inputGroupFile04.custom-file-input((change)='seleccionarFoto($event)', type='file', aria-describedby='inputGroupFileAddon04')
+                  label.custom-file-label(for='inputGroupFile04') Seleccionar Foto
+                .input-group-append
+                  button#inputGroupFileAddon04.btn.btn-outline-secondary((click)='subirFoto()', [disabled]='!fotoSeleccionada', type='button') Subir
+              .progress(*ngIf='progreso > 0')
+                .progress-bar.progress-bar-striped(role='progressbar', [style.width.%]='progreso', attr.aria-valuenow='{{progreso}}', aria-valuemin='0', aria-valuemax='100') {{ progreso}} %
+            .col-sm
+              img.img.thumbnail.rounded(src='http://localhost:8080/api/clientes/uploads/img/{{cliente.foto}}', *ngIf='cliente?.foto', alt='{{cliente.foto}}')
+      .modal-footer
+        button.btn.btn-secondary((click)='cerrarModal()', type='button', data-dismiss='modal') Cerrar

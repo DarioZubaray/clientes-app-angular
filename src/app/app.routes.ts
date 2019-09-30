@@ -10,8 +10,7 @@ const routes: Routes = [
   {path: 'clientes/page/:page', component: ClientesComponent },
   {path: 'directiva', component: DirectivaComponent },
   {path: 'clientes/forma', component: FormComponent },
-  {path: 'clientes/forma/:id', component: FormComponent },
-  {path: 'clientes/detalle/:id', component: DetalleComponent }
+  {path: 'clientes/forma/:id', component: FormComponent }
 ]
 
 export const APP_ROUTES = RouterModule.forRoot(routes);

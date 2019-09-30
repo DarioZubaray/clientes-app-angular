@@ -1,3 +1,4 @@
+detalle-cliente([cliente]="clienteSeleccionado", *ngIf="clienteSeleccionado")
 .card.border-dark.bg-transparent.mt-3
   .card-header
     button.btn.btn-secondary.float-right(type="button", '(click)'="habilitar = !habilitar")
@@ -24,7 +25,7 @@
       tbody
         tr('*ngFor'="let cliente of clientes")
           td
-              button.btn.btn-primary.btn-sm(type='button', name='detalle',[routerLink]="['/clientes/detalle', cliente.id]") {{ cliente.id }}
+              button.btn.btn-primary.btn-sm(type='button', name='detalle', (click)="this.abrirModal(cliente)") {{ cliente.id }}
           td {{ cliente.nombre }}
           td {{ cliente.apellido }}
           td {{ cliente.email }}

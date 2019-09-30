@@ -1,34 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpEventType } from '@angular/common/http';
 import { Cliente } from '../clientes/cliente';
-import { ClienteService } from '../../sevices/cliente.service';
+import { ClienteService } from '../../services/cliente.service';
 import swal from 'sweetalert2';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'detalle-cliente',
   templateUrl: './detalle.component.html',
-  styles: []
+  styles: ['.moda { display: block;}']
 })
 export class DetalleComponent implements OnInit {
 
   titulo: string = "Detalle del cliente ";
-  cliente: Cliente;
+  @Input() cliente: Cliente;
   progreso: number = 0;
   private fotoSeleccionada: File;
 
-  constructor(private _clienteService: ClienteService, private activatedRoute: ActivatedRoute) { }
+  constructor(private _clienteService: ClienteService,
+              private _modalService: ModalService) { }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(params => {
-      let id = + params.get('id');
-      if (id) {
-        this._clienteService.getCliente(id).subscribe(cliente => {
-          this.cliente = cliente;
-          this.titulo = "Detalle del cliente " + cliente.nombre;
-        })
-      }
-    });
+
   }
 
   seleccionarFoto(event) {
@@ -49,7 +42,7 @@ export class DetalleComponent implements OnInit {
                           .subscribe(event => {
 
         if (event.type === HttpEventType.UploadProgress) {
-          this.progreso = Math.round(100 * event.loaded / event.total)
+          this.progreso = Math.round(100 * event.loaded / event.total);
         } else if (event.type === HttpEventType.Response) {
           let response: any = event.body;
           this.cliente = response.cliente as Cliente;
@@ -58,6 +51,11 @@ export class DetalleComponent implements OnInit {
 
       });
     }
+  }
 
+  cerrarModal() {
+    this.fotoSeleccionada = null;
+    this.progreso = 0;
+    this._modalService.cerrarModal();
   }
 }
