@@ -15,6 +15,7 @@
                   li.list-group-item {{ cliente.apellido }}
                   li.list-group-item {{ cliente.email }}
                   li.list-group-item {{ cliente.createAt }}
+                  li.list-group-item {{ cliente.region.nombre }}
                 .input-group.mb-3
                   .custom-file
                     input#inputGroupFile04.custom-file-input((change)='seleccionarFoto($event)', type='file', aria-describedby='inputGroupFileAddon04')
