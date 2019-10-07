@@ -1,0 +1,11 @@
+.container.my-3
+  .card.bg-transparent.text-center
+    .card-header {{ titulo }}
+    .card-body
+      form.text-center(method='POST')
+        .form-group.col-sm-6.offset-sm-3
+          input#username.form-control(type='text', name='username', placeholder='Nombre de usuario', required='', autofocus='')
+        .form-group.col-sm-6.offset-sm-3
+          input#password.form-control(type='text', name='password', placeholder='Clave', required='')
+        .form-group.col-sm-6.offset-sm-3
+          input#login.btn.btn-primary.btn-lg.btn-block(type='submit', value='Acceder')

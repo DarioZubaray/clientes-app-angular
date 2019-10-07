@@ -19,6 +19,7 @@ import { APP_ROUTES } from './app.routes';
 import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es';
 import { DetalleComponent } from './components/detalle/detalle.component';
+import { LoginComponent } from './components/usuarios/login.component';
 
 registerLocaleData(localeES, 'es-AR');
 
@@ -32,6 +33,7 @@ registerLocaleData(localeES, 'es-AR');
     FormComponent,
     PaginadorComponent,
     DetalleComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
