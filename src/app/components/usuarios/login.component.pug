@@ -6,6 +6,8 @@
         .form-group.col-sm-6.offset-sm-3
           input#username.form-control([(ngModel)]="usuario.username", type='text', name='username', placeholder='Nombre de usuario', required='', autofocus='')
         .form-group.col-sm-6.offset-sm-3
-          input#password.form-control([(ngModel)]="usuario.password", type='text', name='password', placeholder='Clave', required='')
+          input#password.form-control([(ngModel)]="usuario.password", type='password', name='password', placeholder='Clave', required='')
         .form-group.col-sm-6.offset-sm-3
-          input#login.btn.btn-primary.btn-lg.btn-block((click)="login()", type='submit', value='Acceder')
+          button#login.btn.btn-primary.btn-lg.btn-block((click)="login()", type='submit', value='Acceder')
+            fa-icon.text-white.mx-1([icon]="faKey")
+            span Acceder
