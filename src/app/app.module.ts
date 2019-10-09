@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -20,6 +20,8 @@ import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { LoginComponent } from './components/usuarios/login.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 registerLocaleData(localeES, 'es-AR');
 
@@ -43,7 +45,11 @@ registerLocaleData(localeES, 'es-AR');
     FontAwesomeModule,
     BrowserAnimationsModule,
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es-AR' }  ],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es-AR' },
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
