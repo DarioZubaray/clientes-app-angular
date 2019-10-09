@@ -6,6 +6,7 @@ import { faPlus, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import swal from 'sweetalert2';
 import { ModalService } from '../../services/modal.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-clientes',
@@ -25,7 +26,8 @@ export class ClientesComponent implements OnInit {
 
   constructor(private _clienteService: ClienteService,
               private _modalService: ModalService,
-              private activatedRouter: ActivatedRoute) { }
+              private _authService: AuthService,
+              public activatedRouter: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRouter.params.subscribe( params => {

@@ -31,7 +31,7 @@ export class AuthService {
       this._token = sessionStorage.getItem('token');
       return this._token;
     } else {
-      return '';
+      return null;
     }
   }
 
@@ -77,5 +77,20 @@ export class AuthService {
     } else {
       return null;
     }
+  }
+
+  isAuthenticated(): boolean {
+    let payload = this.obtenerPayload(this.token);
+    return payload != null && payload.user_name && payload.user_name.length > 0;
+  }
+
+  hasRole(role: string): boolean {
+    return (this.usuario.roles.includes(role));
+  }
+
+  logout() {
+    this._token = null;
+    this._usuario = null;
+    sessionStorage.clear();
   }
 }

@@ -4,6 +4,7 @@ import { Cliente } from '../clientes/cliente';
 import { ClienteService } from '../../services/cliente.service';
 import swal from 'sweetalert2';
 import { ModalService } from '../../services/modal.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'detalle-cliente',
@@ -18,7 +19,8 @@ export class DetalleComponent implements OnInit {
   private fotoSeleccionada: File;
 
   constructor(private _clienteService: ClienteService,
-              public _modalService: ModalService) { }
+              private _modalService: ModalService,
+              private _authService: AuthService) { }
 
   ngOnInit() {
 
