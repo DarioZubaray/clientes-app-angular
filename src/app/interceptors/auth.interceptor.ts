@@ -23,13 +23,11 @@ export class AuthInterceptor implements HttpInterceptor {
             this._authService.logout();
           }
           this.router.navigate(['/login']);
-          return true;
         }
 
         if(e.status == 403) {
           swal('Acceso denegado', `${this._authService.usuario.username} no tiene acceso a este recurso`, 'warning');
           this.router.navigate(['/clientes']);
-          return true;
         }
         return throwError(e);
       })
