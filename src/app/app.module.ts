@@ -22,6 +22,7 @@ import { DetalleComponent } from './components/detalle/detalle.component';
 import { LoginComponent } from './components/usuarios/login.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { PerfilComponent } from './components/usuarios/perfil.component';
 
 registerLocaleData(localeES, 'es-AR');
 
@@ -36,6 +37,7 @@ registerLocaleData(localeES, 'es-AR');
     PaginadorComponent,
     DetalleComponent,
     LoginComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,

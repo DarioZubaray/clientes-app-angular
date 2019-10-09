@@ -1,0 +1,22 @@
+.card
+  .card-header
+    .card-title Perfil de {{ _authService.usuario.username }} {{ _authService.usuario.apellido }}
+  .card-body
+    form
+    .form-group.row
+      label.col-sm-2.col-form-label(for="usuario-nombre") Nombre
+      .col-sm-10
+        input.form-control(type="text", id="usuario-nombre", [value]="_authService.usuario.nombre")
+    .form-group.row
+      label.col-sm-2.col-form-label(for="usuario-apellido") Apellido
+      .col-sm-10
+        input.form-control(type="text", id="usuario-apellido", [value]="_authService.usuario.apellido")
+    .form-group.row
+      label.col-sm-2.col-form-label(for="usuario-email") Email
+      .col-sm-10
+        input.form-control(type="text", id="usuario-email", [value]="_authService.usuario.email")
+    .form-group.row
+      label.col-sm-2.col-form-label(for="usuario-roles") Roles
+      .col-sm-10
+        select.form-control(id="usuario-roles")
+          option(*ngFor="let role of _authService.usuario.roles") {{ role }}
