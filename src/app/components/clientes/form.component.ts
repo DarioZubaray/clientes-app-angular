@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Cliente } from './cliente';
+import { Cliente } from '../../models/cliente';
+import { Region } from '../../models/region';
 import { ClienteService } from '../../services/cliente.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
-import { Region } from './region';
 
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpEventType } from '@angular/common/http';
-import { Cliente } from '../clientes/cliente';
+import { Cliente } from '../../models/cliente';
 import { ClienteService } from '../../services/cliente.service';
 import swal from 'sweetalert2';
 import { ModalService } from '../../services/modal.service';

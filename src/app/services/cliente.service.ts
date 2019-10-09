@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Cliente } from '../components/clientes/cliente';
+import { Cliente } from '../models/cliente';
+import { Region } from '../models/region';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Region } from '../components/clientes/region';
 import { AuthService } from './auth.service';
 
 @Injectable({

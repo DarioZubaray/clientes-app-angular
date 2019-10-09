@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from './usuario';
+import { Usuario } from '../../models/usuario';
 import swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
