@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'clientes', component: ClientesComponent },
   {path: 'clientes/page/:page', component: ClientesComponent },
   {path: 'directiva', component: DirectivaComponent },
-  {path: 'perfil', component: PerfilComponent },
+  {path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
   {path: 'clientes/forma', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} },
   {path: 'clientes/forma/:id', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} },
   {path: 'login', component: LoginComponent }
