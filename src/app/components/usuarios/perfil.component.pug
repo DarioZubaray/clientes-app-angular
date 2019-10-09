@@ -6,23 +6,20 @@
     .form-group.row
       label.col-sm-2.col-form-label(for="usuario-username") Usuario
       .col-sm-10
-        input.form-control(type="text", id="usuario-username", [value]="_authService.usuario.username")
+        input.form-control(type="text", id="usuario-username", [value]="_authService.usuario.username", disabled="")
     .form-group.row
       label.col-sm-2.col-form-label(for="usuario-nombre") Nombre
       .col-sm-10
-        input.form-control(type="text", id="usuario-nombre", [value]="_authService.usuario.nombre")
+        input.form-control(type="text", id="usuario-nombre", [value]="_authService.usuario.nombre", disabled="")
     .form-group.row
       label.col-sm-2.col-form-label(for="usuario-apellido") Apellido
       .col-sm-10
-        input.form-control(type="text", id="usuario-apellido", [value]="_authService.usuario.apellido")
+        input.form-control(type="text", id="usuario-apellido", [value]="_authService.usuario.apellido", disabled="")
     .form-group.row
       label.col-sm-2.col-form-label(for="usuario-email") Email
       .col-sm-10
-        input.form-control(type="text", id="usuario-email", [value]="_authService.usuario.email")
+        input.form-control(type="text", id="usuario-email", [value]="_authService.usuario.email", disabled="")
     .form-group.row
       label.col-sm-2.col-form-label(for="usuario-roles") Roles
       .col-sm-10
-        select.form-control(id="usuario-roles")
-          option(*ngFor="let role of _authService.usuario.roles") {{ role }}
-    .col-sm-10.offset-sm-2
-      button.btn.btn-primary.float-left(type="submit") Submit
+        span.badge.badge-pill.badge-info.mx-1.float-left(id="usuario-roles", *ngFor="let role of _authService.usuario.roles") {{ role }}
