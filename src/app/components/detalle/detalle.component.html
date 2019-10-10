@@ -33,6 +33,27 @@
               </div>
               <div class="col-sm"><img class="img-fluid img thumbnail rounded" src="http://localhost:8080/api/clientes/uploads/img/{{cliente.foto}}" *ngIf="cliente?.foto" alt="{{cliente.foto}}"/></div>
             </div>
+            <div class="row">
+              <div class="alert alert-info my-4" *ngIf="cliente.facturas.length == 0">No hay facturas asignadas para el cliente</div>
+              <table class="table table-bordered table-striped my-4" *ngIf="cliente.facturas.length &gt; 0">
+                <thead>
+                  <tr>
+                    <th>Folio</th>
+                    <th>descripcion</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let factura of cliente.facturas">
+                    <td>{{factura.id}}</td>
+                    <td>{{factura.descripcion}}</td>
+                    <td>{{factura.createAt}}</td>
+                    <td>{{factura.total}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
