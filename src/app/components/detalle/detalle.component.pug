@@ -32,14 +32,17 @@
                 thead
                   tr
                     th Folio
-                    th descripcion
+                    th Descripción
                     th Fecha
                     th Total
+                    th Detalle
                 tbody
                   tr(*ngFor="let factura of cliente.facturas")
                     td {{factura.id}}
                     td {{factura.descripcion}}
                     td {{factura.createAt}}
                     td {{factura.total}}
+                    td
+                      button.btn.btn-success.btn-sm(type="button", [routerLink]="['/facturas'], factura.id") Ver
         .modal-footer
           button.btn.btn-secondary((click)='cerrarModal()', type='button', data-dismiss='modal') Cerrar
