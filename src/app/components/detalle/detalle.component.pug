@@ -43,6 +43,6 @@
                     td {{factura.createAt}}
                     td {{factura.total}}
                     td
-                      button.btn.btn-success.btn-sm(type="button", [routerLink]="['/facturas'], factura.id") Ver
+                      button.btn.btn-success.btn-sm(type="button", [routerLink]="['/facturas', factura.id]") Ver
         .modal-footer
           button.btn.btn-secondary((click)='cerrarModal()', type='button', data-dismiss='modal') Cerrar
