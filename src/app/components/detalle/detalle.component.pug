@@ -36,6 +36,7 @@
                     th Fecha
                     th Total
                     th Detalle
+                    th Eliminar
                 tbody
                   tr(*ngFor="let factura of cliente.facturas")
                     td {{factura.id}}
@@ -44,5 +45,7 @@
                     td {{factura.total}}
                     td
                       button.btn.btn-success.btn-sm(type="button", [routerLink]="['/facturas', factura.id]") Ver
+                    td
+                      button.btn.btn-ganger.btn-sm(type="button", (click)="delete(factura)") Eliminar
         .modal-footer
           button.btn.btn-secondary((click)='cerrarModal()', type='button', data-dismiss='modal') Cerrar
