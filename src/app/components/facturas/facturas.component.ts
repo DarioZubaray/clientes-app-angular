@@ -55,10 +55,13 @@ export class FacturasComponent implements OnInit {
   productoSeleccionado(event: MatAutocompleteSelectedEvent): void {
     let producto = event.option.value as Producto;
 
-    let nuevoItem = new ItemFactura();
-    nuevoItem.producto = producto;
-
-    this.factura.itemFactura.push(nuevoItem);
+    if(this.existeItem(producto.id)) {
+      this.incrementaCantidad(producto.id);
+    } else {
+      let nuevoItem = new ItemFactura();
+      nuevoItem.producto = producto;
+      this.factura.itemFactura.push(nuevoItem);
+    }
 
     this.autocompleteControl.setValue('');
     event.option.focus();
@@ -67,6 +70,9 @@ export class FacturasComponent implements OnInit {
 
   actualizarCantidad(productoId: number, event: any): void {
     let cantidad = event.target.value as number;
+    if (cantidad == 0) {
+      return this.eliminarItemFactura(productoId);
+    }
 
     this.factura.itemFactura = this.factura.itemFactura.map((item: ItemFactura) => {
       if (productoId === item.producto.id) {
@@ -74,5 +80,30 @@ export class FacturasComponent implements OnInit {
       }
       return item;
     });
+  }
+
+  existeItem(idProducto: number): boolean {
+    let existe = false;
+
+    this.factura.itemFactura.forEach((item: ItemFactura) => {
+      if (idProducto === item.producto.id) {
+        existe = true;
+      }
+    });
+    return existe;
+  }
+
+  incrementaCantidad(idProducto: number): void {
+    this.factura.itemFactura = this.factura.itemFactura.map((item: ItemFactura) => {
+      if (idProducto === item.producto.id) {
+        ++item.cantidad;
+      }
+      return item;
+    });
+  }
+
+  eliminarItemFactura(id: number): void {
+    this.factura.itemFactura = this.factura.itemFactura.filter( (item: ItemFactura) => id !== item.producto.id);
+
   }
 }

@@ -35,6 +35,7 @@
             th Precio
             th Cantidad
             th Total
+            th Eliminar
         tbody
           tr(*ngFor="let item of factura.itemFactura")
             td {{ item.producto.nombre }}
@@ -42,6 +43,8 @@
             td 
               input.form-control.col-sm-4(type="number", value="{{ item.cantidad }}", (change)="actualizarCantidad(item.producto.id, $event)")
             td {{ item.calcularImporte() }}
+            td
+              button.btn.btn-danger.btn-sm(type="button", (click)="eliminarItemFactura(item.producto.id)") X
 
       .form-group.row
         .col-sm-6
