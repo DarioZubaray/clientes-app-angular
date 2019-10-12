@@ -9,6 +9,7 @@ import { RoleGuard } from "./guards/role.guard";
 import { DetalleFacturaComponent } from "./components/facturas/detalle-factura.component";
 import { ProductosComponent } from "./components/productos/productos.component";
 import { ProductosFormComponent } from "./components/productos/productos-form.component";
+import { FacturasComponent } from "./components/facturas/facturas.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/clientes', pathMatch: 'full'},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'productos/forma/:id', component: ProductosFormComponent, canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} },
   {path: 'login', component: LoginComponent },
   {path: 'facturas/:id', component: DetalleFacturaComponent },
+  {path: 'facturas/forma/:clienteId', component: FacturasComponent }
 ]
 
 export const APP_ROUTES = RouterModule.forRoot(routes);

@@ -26,8 +26,12 @@
                   .progress-bar.progress-bar-striped(role='progressbar', [style.width.%]='progreso', attr.aria-valuenow='{{progreso}}', aria-valuemin='0', aria-valuemax='100') {{ progreso}} %
               .col-sm
                 img.img-fluid.img.thumbnail.rounded(src='http://localhost:8080/api/clientes/uploads/img/{{cliente.foto}}', *ngIf='cliente?.foto', alt='{{cliente.foto}}')
+            hr
             .row
-              .alert.alert-info.my-4(*ngIf="cliente.facturas.length == 0") No hay facturas asignadas para el cliente
+              button.btn.btn-success.btn-sm(type='button', name='editar', [routerLink]="['/facturas/forma', cliente.id]") Crear factura
+                fa-icon.text-white.mx-1([icon]="faPlus")
+            .row
+              .alert.alert-info.my-4(*ngIf="cliente.facturas.length == 0") No hay facturas asignadas para el cliente para el cliente {{ cliente.nombre}} {{cliente.apellido}}
               table.table.table-bordered.table-striped.my-4(*ngIf="cliente.facturas.length > 0")
                 thead
                   tr
@@ -45,7 +49,9 @@
                     td {{factura.total}}
                     td
                       button.btn.btn-success.btn-sm(type="button", [routerLink]="['/facturas', factura.id]") Ver
+                        fa-icon.text-white.mx-1([icon]="faEdit")
                     td
-                      button.btn.btn-ganger.btn-sm(type="button", (click)="delete(factura)") Eliminar
+                      button.btn.btn-danger.btn-sm(type="button", (click)="delete(factura)") Eliminar
+                        fa-icon.text-white.mx-1([icon]="faTrashAlt")
         .modal-footer
           button.btn.btn-secondary((click)='cerrarModal()', type='button', data-dismiss='modal') Cerrar

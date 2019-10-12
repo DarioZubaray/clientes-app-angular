@@ -21,6 +21,7 @@ detalle-cliente(*ngIf="clienteSeleccionado", [cliente]="clienteSeleccionado")
           th apellido
           th email
           th fecha
+          th(*ngIf="_authService.hasRole('ROLE_ADMIN')") Crear factura
           th(*ngIf="_authService.hasRole('ROLE_ADMIN')") editar
           th(*ngIf="_authService.hasRole('ROLE_ADMIN')") eliminar
       tbody
@@ -32,6 +33,9 @@ detalle-cliente(*ngIf="clienteSeleccionado", [cliente]="clienteSeleccionado")
           td {{ cliente.apellido }}
           td {{ cliente.email }}
           td {{ cliente.createAt }}
+          td(*ngIf="_authService.hasRole('ROLE_ADMIN')")
+            button.btn.btn-success.btn-sm(type='button', name='editar', [routerLink]="['/factura/forma', cliente.id]") Crear factura
+              fa-icon.text-white.mx-1([icon]="faPlus")
           td(*ngIf="_authService.hasRole('ROLE_ADMIN')")
             button.btn.btn-primary.btn-sm(type='button', name='editar', [routerLink]="['/clientes/forma', cliente.id]") Editar
               fa-icon.text-white.mx-1([icon]="faEdit")

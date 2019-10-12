@@ -26,6 +26,7 @@ import { PerfilComponent } from './components/usuarios/perfil.component';
 import { DetalleFacturaComponent } from './components/facturas/detalle-factura.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { ProductosFormComponent } from './components/productos/productos-form.component';
+import { FacturasComponent } from './components/facturas/facturas.component';
 
 registerLocaleData(localeES, 'es-AR');
 
@@ -44,6 +45,7 @@ registerLocaleData(localeES, 'es-AR');
     DetalleFacturaComponent,
     ProductosComponent,
     ProductosFormComponent,
+    FacturasComponent,
   ],
   imports: [
     BrowserModule,

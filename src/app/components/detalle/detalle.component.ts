@@ -7,6 +7,7 @@ import { ModalService } from '../../services/modal.service';
 import { AuthService } from '../../services/auth.service';
 import { FacturaService } from '../../services/factura.service';
 import { Factura } from '../../models/factura';
+import { faPlus, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'detalle-cliente',
@@ -18,6 +19,9 @@ export class DetalleComponent implements OnInit {
   titulo: string = "Detalle del cliente ";
   @Input() cliente: Cliente;
   progreso: number = 0;
+  faPlus = faPlus;
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
   private fotoSeleccionada: File;
 
   constructor(private _clienteService: ClienteService,
