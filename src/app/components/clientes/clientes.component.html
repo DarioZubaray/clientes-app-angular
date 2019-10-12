@@ -33,7 +33,7 @@
           <td>{{ cliente.email }}</td>
           <td>{{ cliente.createAt }}</td>
           <td *ngIf="_authService.hasRole('ROLE_ADMIN')">
-            <button class="btn btn-success btn-sm" type="button" name="editar" [routerLink]="['/factura/forma', cliente.id]">Crear factura
+            <button class="btn btn-success btn-sm" type="button" name="editar" [routerLink]="['/facturas/forma', cliente.id]">Crear factura
               <fa-icon class="text-white mx-1" [icon]="faPlus"></fa-icon>
             </button>
           </td>

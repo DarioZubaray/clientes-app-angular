@@ -22,5 +22,13 @@
 
       .form-group.row
         .col-sm-6
+          mat-form-field.example-full-width
+            input(type='text', placeholder='Añadir elemento', aria-label='Number', matInput='', [formControl]='autocompleteControl', [matAutocomplete]='auto')
+            mat-autocomplete(#auto='matAutocomplete')
+              mat-option(*ngFor='let producto of productosFiltrados | async', [value]='producto')
+                | {{producto}}
+
+      .form-group.row
+        .col-sm-6
           button.btn.btn.btn-rounded.btn-primary(type="submit") Crear Factura
             fa-icon.text-white.mx-1([icon]="faPlus")

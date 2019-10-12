@@ -24,6 +24,16 @@
       </div>
       <div class="form-group row">
         <div class="col-sm-6">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Añadir elemento" aria-label="Number" matInput="" [formControl]="autocompleteControl" [matAutocomplete]="auto"/>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let producto of productosFiltrados | async" [value]="producto">{{producto}}</mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
           <button class="btn btn btn-rounded btn-primary" type="submit">Crear Factura
             <fa-icon class="text-white mx-1" [icon]="faPlus"></fa-icon>
           </button>
