@@ -55,6 +55,7 @@ export class FormComponent implements OnInit {
   }
 
   update(): void {
+    this.cliente.facturas = null;
     this._clienteService.update(this.cliente).subscribe(respuesta => {
       swal('Cliente Actualizado', `${respuesta.mensaje}: ${respuesta.cliente.nombre}`, 'success');
       this.router.navigate(['clientes']);
