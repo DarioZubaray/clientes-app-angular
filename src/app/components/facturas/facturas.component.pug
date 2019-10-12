@@ -39,7 +39,8 @@
           tr(*ngFor="let item of factura.itemFactura")
             td {{ item.producto.nombre }}
             td {{ item.producto.precio }}
-            td {{ item.cantidad }}
+            td 
+              input.form-control.col-sm-4(type="number", value="{{ item.cantidad }}", (change)="actualizarCantidad(item.producto.id, $event)")
             td {{ item.calcularImporte() }}
 
       .form-group.row
