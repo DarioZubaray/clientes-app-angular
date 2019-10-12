@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Factura } from '../../models/factura';
 import { ClienteService } from '../../services/cliente.service';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-facturas',
@@ -12,6 +13,7 @@ export class FacturasComponent implements OnInit {
 
   titulo: string = "Nueva Factura";
   factura: Factura = new Factura();
+  faPlus = faPlus;
 
   constructor(private _clienteService: ClienteService,
               public activatedRoute: ActivatedRoute) { }

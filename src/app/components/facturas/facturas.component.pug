@@ -1,1 +1,26 @@
-p facturas it's work!
+.card.border-dark.mt-3.text-left
+  .card-header {{ titulo }}: {{ factura.descripcion }}
+  .card-body
+    h4.card-title
+      a.btn.btn-light.btn-xs([routerLink]="['/clientes']") &laquo; Volver
+    
+    form
+      .form-group.row(*ngIf="factura.cliente")
+        label.col-sm-2.col-form-label(for="cliente") Cliente
+        .col-sm-6
+          input.form-control(type="text", name="cliente", value="{{ factura.cliente.nombre }} {{ factura.cliente.apellido }}", disabled="")
+
+      .form-group.row
+        label.col-sm-2.col-form-label(for="descripcion") Descripción
+        .col-sm-6
+          input.form-control(type="text", name="descripcion", [(ngModel)]="factura.descripcion")
+
+      .form-group.row
+        label.col-sm-2.col-form-label(for="observacion") Observaciones
+        .col-sm-6
+          textarea.form-control(name="observacion", [(ngModel)]="factura.observacion")
+
+      .form-group.row
+        .col-sm-6
+          button.btn.btn.btn-rounded.btn-primary(type="submit") Crear Factura
+            fa-icon.text-white.mx-1([icon]="faPlus")
