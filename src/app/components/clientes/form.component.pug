@@ -42,6 +42,7 @@
 
       .form-group.row
         .col-sm-6
+          button.btn.btn-secondary.mx-3(role='button', [routerLink]='["/clientes"]') Volver
           button.btn.btn-primary(role='button', (click)='create()', *ngIf='!cliente.id else elseBlock', [disabled]='!clienteForm.form.valid') Crear
           ng-template(#elseBlock='')
             button.btn.btn-primary(role='button', (click)='update()', [disabled]='!clienteForm.form.valid') Editar

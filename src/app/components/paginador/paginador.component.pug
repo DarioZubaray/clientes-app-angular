@@ -1,17 +1,17 @@
 ul.pagination.pg-blue(*ngIf="paginas?.length > 0")
 
   li.page-item([ngClass]="paginador.first ? 'disabled':''")
-    a.page-link([routerLink]="['/clientes/page/', 0]") Primera
+    a.page-link([routerLink]="['/' + tipo + '/page/', 0]") Primera
 
   li.page-item(*ngIf="paginador.number > 0")
-    a.page-link([routerLink]="['/clientes/page', paginador.number - 1]") &laquo;
+    a.page-link([routerLink]="['/' + tipo + '/page', paginador.number - 1]") &laquo;
 
   li.page-item(*ngFor='let pagina of paginas', [ngClass]="pagina-1 == paginador.number?'active':''")
     span.page-link(*ngIf="pagina-1 == paginador.number") {{ pagina }}
-    a.page-link(*ngIf="pagina-1 != paginador.number", [routerLink]="['/clientes/page', pagina - 1]") {{ pagina }}
+    a.page-link(*ngIf="pagina-1 != paginador.number", [routerLink]="['/' + tipo + '/page', pagina - 1]") {{ pagina }}
 
   li.page-item(*ngIf="paginador.number < paginador.totalPages -1")
-    a.page-link([routerLink]="['/clientes/page', paginador.number + 1]") &raquo;
+    a.page-link([routerLink]="['/' + tipo + '/page', paginador.number + 1]") &raquo;
 
   li.page-item([ngClass]="paginador.last ? 'disabled':''")
-    a.page-link([routerLink]="['/clientes/page/', paginador.totalPages - 1]") Última
+    a.page-link([routerLink]="['/' + tipo + '/page/', paginador.totalPages - 1]") Última

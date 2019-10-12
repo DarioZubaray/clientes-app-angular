@@ -1,0 +1,35 @@
+.card.border-dark.bg-transparent.mt-3
+  .card-header
+    button.btn.btn-secondary.float-right(type="button", '(click)'="habilitar = !habilitar")
+      span {{ habilitar ? 'Ocultar' : 'Mostrar'}}
+    span(style="vertical-align: sub;") Productos
+
+  div.card-body.text-dark('*ngIf'="habilitar")
+    h5.card-title Listado de productos
+    .my-2.text-left
+      button.btn.btn-rounded.btn-success(*ngIf="isAdmin", [routerLink]="['/productos/forma']") Crear
+        fa-icon.text-white.mx-1([icon]="faPlus")
+
+    .alert.alert-info('*ngIf'="productos?.length === 0") No hay registros que mostrar.
+    table.table.table-hover('*ngIf'="productos?.length > 0")
+      thead
+        tr
+          th(*ngIf="isUser") id
+          th nombre
+          th precio
+          th fecha
+          th(*ngIf="isAdmin") editar
+          th(*ngIf="isAdmin") eliminar
+      tbody
+        tr('*ngFor'="let producto of productos")
+          td(*ngIf="isUser") {{ producto.id }}
+          td {{ producto.nombre }}
+          td {{ producto.precio }}
+          td {{ producto.createAt }}
+          td(*ngIf="isAdmin")
+            button.btn.btn-primary.btn-sm(type='button', name='editar', [routerLink]="['/productos/forma', producto.id]") Editar
+              fa-icon.text-white.mx-1([icon]="faEdit")
+          td(*ngIf="isAdmin")
+            button.btn.btn-danger.btn-sm(type='button', name='eliminar', (click)="delete(producto)") Eliminar
+              fa-icon.text-white.mx-1([icon]="faTrashAlt")
+    app-paginador(*ngIf="paginador", [paginador]='paginador', pathType='productos')

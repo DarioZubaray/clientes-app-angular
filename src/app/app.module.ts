@@ -24,6 +24,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { PerfilComponent } from './components/usuarios/perfil.component';
 import { DetalleFacturaComponent } from './components/facturas/detalle-factura.component';
+import { ProductosComponent } from './components/productos/productos.component';
+import { ProductosFormComponent } from './components/productos/productos-form.component';
 
 registerLocaleData(localeES, 'es-AR');
 
@@ -40,6 +42,8 @@ registerLocaleData(localeES, 'es-AR');
     LoginComponent,
     PerfilComponent,
     DetalleFacturaComponent,
+    ProductosComponent,
+    ProductosFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,38 @@
+.card.bg-dark.text-white.my-2
+  .card-header  {{ titulo }}
+  .card-body
+    form(#productoForm='ngForm')
+
+      .form-group.row
+        label.col-form-label.col-sm-2(for='') Nombre
+        .col-sm-6
+          input.form-control(type='text', [(ngModel)]='producto.nombre', name='nombre', #nombre='ngModel', required="", minlength="4")
+          .alert.alert-danger.my-3(*ngIf='producto.invalid && (nombre.dirty || nombre.touched)')
+            div(*ngIf='nombre.errors.required') El Nombre es requerido
+            div(*ngIf='nombre.errors.minlength') El Nombre debe tener al menos 4 caracteres
+
+      .form-group.row
+        label.col-form-label.col-sm-2(for='') Precio
+        .col-sm-6
+          input.form-control(type='number', [(ngModel)]='producto.precio', name='precio', #precio='ngModel', required="")
+          .alert.alert-danger.my-3(*ngIf='precio.invalid && (precio.dirty || precio.touched)')
+            div(*ngIf='precio.errors.required') El Precio es requerido
+
+      .form-group.row
+        label.col-form-label.col-sm-2(for='') Fecha
+        .col-sm-6
+          input.form-control(type='date', [(ngModel)]='producto.createAt', name='createAt', #createAt='ngModel', required="")
+          .alert.alert-danger.my-3(*ngIf='createAt.invalid && (createAt.dirty || createAt.touched)')
+            div(*ngIf='createAt.errors.required') La fecha es requerida
+
+      .form-group.row
+        .col-sm-6
+          button.btn.btn-secondary.mx-3(role='button', [routerLink]='["/productos"]') Volver
+          button.btn.btn-primary(role='button', (click)='create()', *ngIf='!producto.id else elseBlock', [disabled]='!productoForm.form.valid') Crear
+          ng-template(#elseBlock='')
+            button.btn.btn-primary(role='button', (click)='update()', [disabled]='!productoForm.form.valid') Editar
+              fa-icon.text-white.mx-1([icon]="faEdit")
+
+.alert.alert-danger.text-left(*ngIf='errores?.length >0')
+  ul.ml-1
+    li(*ngFor='let err of errores') {{ err }}

@@ -1,0 +1,52 @@
+
+<div class="card bg-dark text-white my-2">
+  <div class="card-header"> {{ titulo }}</div>
+  <div class="card-body">
+    <form #productoForm="ngForm">
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="">Nombre</label>
+        <div class="col-sm-6">
+          <input class="form-control" type="text" [(ngModel)]="producto.nombre" name="nombre" #nombre="ngModel" required="" minlength="4"/>
+          <div class="alert alert-danger my-3" *ngIf="producto.invalid &amp;&amp; (nombre.dirty || nombre.touched)">
+            <div *ngIf="nombre.errors.required">El Nombre es requerido</div>
+            <div *ngIf="nombre.errors.minlength">El Nombre debe tener al menos 4 caracteres</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="">Precio</label>
+        <div class="col-sm-6">
+          <input class="form-control" type="number" [(ngModel)]="producto.precio" name="precio" #precio="ngModel" required=""/>
+          <div class="alert alert-danger my-3" *ngIf="precio.invalid &amp;&amp; (precio.dirty || precio.touched)">
+            <div *ngIf="precio.errors.required">El Precio es requerido</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="">Fecha</label>
+        <div class="col-sm-6">
+          <input class="form-control" type="date" [(ngModel)]="producto.createAt" name="createAt" #createAt="ngModel" required=""/>
+          <div class="alert alert-danger my-3" *ngIf="createAt.invalid &amp;&amp; (createAt.dirty || createAt.touched)">
+            <div *ngIf="createAt.errors.required">La fecha es requerida</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <button class="btn btn-secondary mx-3" role="button" [routerLink]="[&quot;/productos&quot;]">Volver</button>
+          <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!producto.id else elseBlock" [disabled]="!productoForm.form.valid">Crear</button>
+          <ng-template #elseBlock="">
+            <button class="btn btn-primary" role="button" (click)="update()" [disabled]="!productoForm.form.valid">Editar
+              <fa-icon class="text-white mx-1" [icon]="faEdit"></fa-icon>
+            </button>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="alert alert-danger text-left" *ngIf="errores?.length &gt;0">
+  <ul class="ml-1">
+    <li *ngFor="let err of errores">{{ err }}</li>
+  </ul>
+</div>

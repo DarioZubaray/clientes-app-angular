@@ -38,4 +38,4 @@ detalle-cliente(*ngIf="clienteSeleccionado", [cliente]="clienteSeleccionado")
           td(*ngIf="_authService.hasRole('ROLE_ADMIN')")
             button.btn.btn-danger.btn-sm(type='button', name='eliminar', (click)="delete(cliente)") Eliminar
               fa-icon.text-white.mx-1([icon]="faTrashAlt")
-    app-paginador(*ngIf="paginador", [paginador]='paginador')
+    app-paginador(*ngIf="paginador", [paginador]='paginador', pathType='clientes')
