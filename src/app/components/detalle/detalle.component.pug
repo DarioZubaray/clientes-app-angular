@@ -27,7 +27,7 @@
               .col-sm
                 img.img-fluid.img.thumbnail.rounded(src='http://localhost:8080/api/clientes/uploads/img/{{cliente.foto}}', *ngIf='cliente?.foto', alt='{{cliente.foto}}')
             hr
-            .row
+            .row(*ngIf="isAdmin")
               button.btn.btn-success.btn-sm(type='button', name='editar', [routerLink]="['/facturas/forma', cliente.id]") Crear factura
                 fa-icon.text-white.mx-1([icon]="faPlus")
             .row
@@ -40,7 +40,7 @@
                     th Fecha
                     th Total
                     th Detalle
-                    th Eliminar
+                    th(*ngIf="isAdmin") Eliminar
                 tbody
                   tr(*ngFor="let factura of cliente.facturas")
                     td {{factura.id}}
@@ -50,7 +50,7 @@
                     td
                       button.btn.btn-success.btn-sm(type="button", [routerLink]="['/facturas', factura.id]") Ver
                         fa-icon.text-white.mx-1([icon]="faEdit")
-                    td
+                    td(*ngIf="isAdmin")
                       button.btn.btn-danger.btn-sm(type="button", (click)="delete(factura)") Eliminar
                         fa-icon.text-white.mx-1([icon]="faTrashAlt")
         .modal-footer

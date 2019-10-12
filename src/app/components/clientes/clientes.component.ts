@@ -20,6 +20,8 @@ export class ClientesComponent implements OnInit {
   habilitar: boolean = true;
   pagina: number = 0;
   paginador: any;
+  isAdmin: boolean;
+  isUser: boolean;
   faPlus = faPlus;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
@@ -30,6 +32,9 @@ export class ClientesComponent implements OnInit {
               public activatedRouter: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isAdmin = this._authService.hasRole('ROLE_ADMIN');
+    this.isUser = this._authService.hasRole('ROLE_USER');
+
     this.activatedRouter.params.subscribe( params => {
       let page = params['page'];
       if (page) {

@@ -24,8 +24,8 @@ const routes: Routes = [
   {path: 'productos/forma', component: ProductosFormComponent, canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} },
   {path: 'productos/forma/:id', component: ProductosFormComponent, canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} },
   {path: 'login', component: LoginComponent },
-  {path: 'facturas/:id', component: DetalleFacturaComponent },
-  {path: 'facturas/forma/:clienteId', component: FacturasComponent }
+  {path: 'facturas/:id', component: DetalleFacturaComponent, canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_USER'} },
+  {path: 'facturas/forma/:clienteId', component: FacturasComponent, canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'} }
 ]
 
 export const APP_ROUTES = RouterModule.forRoot(routes);

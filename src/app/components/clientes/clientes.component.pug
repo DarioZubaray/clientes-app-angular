@@ -16,30 +16,30 @@ detalle-cliente(*ngIf="clienteSeleccionado", [cliente]="clienteSeleccionado")
     table.table.table-hover('*ngIf'="clientes?.length > 0")
       thead
         tr
-          th(*ngIf="_authService.hasRole('ROLE_USER')") foto
+          th(*ngIf="isUser") foto
           th nombre
           th apellido
           th email
           th fecha
-          th(*ngIf="_authService.hasRole('ROLE_ADMIN')") Crear factura
-          th(*ngIf="_authService.hasRole('ROLE_ADMIN')") editar
-          th(*ngIf="_authService.hasRole('ROLE_ADMIN')") eliminar
+          th(*ngIf="isAdmin") Crear factura
+          th(*ngIf="isAdmin") editar
+          th(*ngIf="isAdmin") eliminar
       tbody
         tr('*ngFor'="let cliente of clientes")
-          td(*ngIf="_authService.hasRole('ROLE_USER')")
+          td(*ngIf="isUser")
             img.img-fluid.img.thumbnail.rounded.pointer.avatar-sm('(click)'="mostrarModal(cliente)", src='http://localhost:8080/api/clientes/uploads/img/{{cliente.foto}}', *ngIf='cliente?.foto', alt='{{cliente.foto}}')
             img.img-fluid.img.thumbnail.rounded.pointer.avatar-sm('(click)'="mostrarModal(cliente)", src='http://localhost:8080/img/no-usuario.png', *ngIf='!cliente?.foto', alt='usuario sin imagen')
           td {{ cliente.nombre }}
           td {{ cliente.apellido }}
           td {{ cliente.email }}
           td {{ cliente.createAt }}
-          td(*ngIf="_authService.hasRole('ROLE_ADMIN')")
+          td(*ngIf="isAdmin")
             button.btn.btn-success.btn-sm(type='button', name='editar', [routerLink]="['/facturas/forma', cliente.id]") Crear factura
               fa-icon.text-white.mx-1([icon]="faPlus")
-          td(*ngIf="_authService.hasRole('ROLE_ADMIN')")
+          td(*ngIf="isAdmin")
             button.btn.btn-primary.btn-sm(type='button', name='editar', [routerLink]="['/clientes/forma', cliente.id]") Editar
               fa-icon.text-white.mx-1([icon]="faEdit")
-          td(*ngIf="_authService.hasRole('ROLE_ADMIN')")
+          td(*ngIf="isAdmin")
             button.btn.btn-danger.btn-sm(type='button', name='eliminar', (click)="delete(cliente)") Eliminar
               fa-icon.text-white.mx-1([icon]="faTrashAlt")
     app-paginador(*ngIf="paginador", [paginador]='paginador', pathType='clientes')

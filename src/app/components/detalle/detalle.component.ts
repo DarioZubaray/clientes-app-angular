@@ -19,6 +19,8 @@ export class DetalleComponent implements OnInit {
   titulo: string = "Detalle del cliente ";
   @Input() cliente: Cliente;
   progreso: number = 0;
+  isAdmin: boolean;
+  isUser: boolean;
   faPlus = faPlus;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
@@ -30,7 +32,8 @@ export class DetalleComponent implements OnInit {
               private _facturaService: FacturaService) { }
 
   ngOnInit() {
-
+    this.isAdmin = this._authService.hasRole('ROLE_ADMIN');
+    this.isUser = this._authService.hasRole('ROLE_USER');
   }
 
   seleccionarFoto(event) {
