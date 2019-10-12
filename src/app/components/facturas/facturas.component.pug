@@ -24,9 +24,23 @@
         .col-sm-6
           mat-form-field.example-full-width
             input(type='text', placeholder='Añadir elemento', aria-label='Productos', matInput='', [formControl]='autocompleteControl', [matAutocomplete]='auto')
-            mat-autocomplete(#auto='matAutocomplete', [displayWith]="mostrarNombre")
+            mat-autocomplete(#auto='matAutocomplete', [displayWith]="mostrarNombre", (optionSelected)="productoSeleccionado($event)")
               mat-option(*ngFor='let producto of productosFiltrados | async', [value]='producto')
                 | {{producto.nombre}}
+
+      table.table.table-striped.table-hover.table-sm
+        thead
+          tr
+            th Producto
+            th Precio
+            th Cantidad
+            th Total
+        tbody
+          tr(*ngFor="let item of factura.itemFactura")
+            td {{ item.producto.nombre }}
+            td {{ item.producto.precio }}
+            td {{ item.cantidad }}
+            td {{ item.calcularImporte() }}
 
       .form-group.row
         .col-sm-6
