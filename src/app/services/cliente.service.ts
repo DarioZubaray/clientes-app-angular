@@ -6,13 +6,14 @@ import { Cliente } from '../models/cliente';
 import { Region } from '../models/region';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { URL_BACKEND } from '../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
 
-  private urlEndpoint = 'http://localhost:8080/api/clientes';
+  private urlEndpoint = URL_BACKEND + '/api/clientes';
 
   constructor(public http: HttpClient,
               public router: Router) { }

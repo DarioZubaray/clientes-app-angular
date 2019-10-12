@@ -27,7 +27,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let cliente of clientes">
-          <td *ngIf="isUser"><img class="img-fluid img thumbnail rounded pointer avatar-sm" (click)="mostrarModal(cliente)" src="http://localhost:8080/api/clientes/uploads/img/{{cliente.foto}}" *ngIf="cliente?.foto" alt="{{cliente.foto}}"/><img class="img-fluid img thumbnail rounded pointer avatar-sm" (click)="mostrarModal(cliente)" src="http://localhost:8080/img/no-usuario.png" *ngIf="!cliente?.foto" alt="usuario sin imagen"/></td>
+          <td *ngIf="isUser"><img class="img-fluid img thumbnail rounded pointer avatar-sm" (click)="mostrarModal(cliente)" src="{{urlEndpoint}}/api/clientes/uploads/img/{{cliente.foto}}" *ngIf="cliente?.foto" alt="{{cliente.foto}}"/><img class="img-fluid img thumbnail rounded pointer avatar-sm" (click)="mostrarModal(cliente)" src="{{urlEndpoint}}/img/no-usuario.png" *ngIf="!cliente?.foto" alt="usuario sin imagen"/></td>
           <td>{{ cliente.nombre }}</td>
           <td>{{ cliente.apellido }}</td>
           <td>{{ cliente.email }}</td>

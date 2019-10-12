@@ -7,6 +7,7 @@ import { faPlus, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import swal from 'sweetalert2';
 import { ModalService } from '../../services/modal.service';
 import { AuthService } from '../../services/auth.service';
+import { URL_BACKEND } from '../../config/config';
 
 @Component({
   selector: 'app-clientes',
@@ -25,6 +26,7 @@ export class ClientesComponent implements OnInit {
   faPlus = faPlus;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
+  urlEndpoint = URL_BACKEND;
 
   constructor(private _clienteService: ClienteService,
               private _modalService: ModalService,

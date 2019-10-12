@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Producto } from '../models/producto';
+import { URL_BACKEND } from '../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
 
-  private urlEndpoint = 'http://localhost:8080/api/productos';
+  private urlEndpoint = URL_BACKEND + '/api/productos';
 
   constructor(public http: HttpClient,
               public router: Router) { }
