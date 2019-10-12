@@ -4,7 +4,7 @@
     h4.card-title
       a.btn.btn-light.btn-xs([routerLink]="['/clientes']") &laquo; Volver
     
-    form
+    form(#facturaForm="ngForm")
       .form-group.row(*ngIf="factura.cliente")
         label.col-sm-2.col-form-label(for="cliente") Cliente
         .col-sm-6
@@ -13,7 +13,8 @@
       .form-group.row
         label.col-sm-2.col-form-label(for="descripcion") Descripción
         .col-sm-6
-          input.form-control(type="text", name="descripcion", [(ngModel)]="factura.descripcion")
+          input.form-control(type="text", name="descripcion", [(ngModel)]="factura.descripcion", required="", #descripcion="ngModel")
+          .alert.alert-danger.my-1(*ngIf="descripcion.invalid && descripcion.touched || descripcion.invalid && facturaForm.submitted") La descripción es requerida
 
       .form-group.row
         label.col-sm-2.col-form-label(for="observacion") Observaciones
@@ -27,8 +28,10 @@
             mat-autocomplete(#auto='matAutocomplete', [displayWith]="mostrarNombre", (optionSelected)="productoSeleccionado($event)")
               mat-option(*ngFor='let producto of productosFiltrados | async', [value]='producto')
                 | {{producto.nombre}}
+          .alert.alert-danger.my-1(*ngIf="autocompleteControl.invalid && facturaForm.submitted") La factura no puede esta vacia
 
-      table.table.table-striped.table-hover.table-sm
+      .alert.alert-info.my-4(*ngIf="factura.itemFactura.length == 0") No hay lineas asignadas a la factura. Debe agregar al menos una
+      table.table.table-striped.table-hover.table-sm(*ngIf="factura.itemFactura.length > 0")
         thead
           tr
             th Producto
@@ -45,8 +48,10 @@
             td {{ item.calcularImporte() }}
             td
               button.btn.btn-danger.btn-sm(type="button", (click)="eliminarItemFactura(item.producto.id)") X
+      h5.float-right(*ngIf="factura.itemFactura.length > 0") Gran Total
+        span.badge.badge-secondary.mx-1 {{ factura.calcularGranTotal() }}
 
       .form-group.row
         .col-sm-6
-          button.btn.btn.btn-rounded.btn-primary(type="submit") Crear Factura
+          button.btn.btn.btn-rounded.btn-success(type="submit", (click)="create(facturaForm)") Crear Factura
             fa-icon.text-white.mx-1([icon]="faPlus")
