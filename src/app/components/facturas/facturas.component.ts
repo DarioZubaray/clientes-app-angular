@@ -5,7 +5,9 @@ import { Factura } from '../../models/factura';
 import { ClienteService } from '../../services/cliente.service';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { flatMap, map } from 'rxjs/operators';
+import { FacturaService } from '../../services/factura.service';
+import { Producto } from '../../models/producto';
 
 @Component({
   selector: 'app-facturas',
@@ -19,17 +21,17 @@ export class FacturasComponent implements OnInit {
   faPlus = faPlus;
   autocompleteControl = new FormControl();
   productos: string[] = ['One', 'Two', 'Three'];
-  productosFiltrados: Observable<string[]>;
+  productosFiltrados: Observable<Producto[]>;
 
   constructor(private _clienteService: ClienteService,
+              private _facturaService: FacturaService,
               public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.productosFiltrados = this.autocompleteControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
+    this.productosFiltrados = this.autocompleteControl.valueChanges.pipe(
+        map(value =>typeof value === 'string' ? value : value.nombre),
+        flatMap(value => value ? this._filter(value) : [])
+    );
     this.activatedRoute.paramMap.subscribe(params => {
       let clienteId = +params.get('clienteId');
       this._clienteService.getCliente(clienteId).subscribe(cliente => {
@@ -38,9 +40,13 @@ export class FacturasComponent implements OnInit {
     });
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): Observable<Producto[]> {
     const filterValue = value.toLowerCase();
 
-    return this.productos.filter(option => option.toLowerCase().includes(filterValue));
+    return this._facturaService.filtrarProductos(filterValue);
+  }
+
+  mostrarNombre(producto?: Producto): string | undefined {
+    return producto ? producto.nombre : undefined;
   }
 }

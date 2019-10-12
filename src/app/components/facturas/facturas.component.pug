@@ -23,10 +23,10 @@
       .form-group.row
         .col-sm-6
           mat-form-field.example-full-width
-            input(type='text', placeholder='Añadir elemento', aria-label='Number', matInput='', [formControl]='autocompleteControl', [matAutocomplete]='auto')
-            mat-autocomplete(#auto='matAutocomplete')
+            input(type='text', placeholder='Añadir elemento', aria-label='Productos', matInput='', [formControl]='autocompleteControl', [matAutocomplete]='auto')
+            mat-autocomplete(#auto='matAutocomplete', [displayWith]="mostrarNombre")
               mat-option(*ngFor='let producto of productosFiltrados | async', [value]='producto')
-                | {{producto}}
+                | {{producto.nombre}}
 
       .form-group.row
         .col-sm-6
