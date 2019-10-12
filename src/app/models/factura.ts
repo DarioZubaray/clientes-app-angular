@@ -4,7 +4,7 @@ import { Cliente } from "./cliente";
 export class Factura {
     id: number;
     descripcion: string;
-    observaciono: string;
+    observacion: string;
     itemFactura: Array<ItemFactura> = [];
     cliente: Cliente;
     totalFactura: number;

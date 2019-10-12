@@ -13,7 +13,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 })
 export class ProductosFormComponent implements OnInit {
 
-  private producto: Producto = new Producto();
+  public producto: Producto = new Producto();
   titulo: string = "Crear nuevo producto";
   errores: string[];
   faEdit = faEdit;

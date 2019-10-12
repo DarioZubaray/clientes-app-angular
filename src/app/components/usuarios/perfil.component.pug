@@ -1,25 +1,25 @@
 .card.border-dark.bg-transparent
   .card-header
-    .card-title Perfil de {{ _authService.usuario.nombre }} {{ _authService.usuario.apellido }}
+    .card-title Perfil de {{ usuario.nombre }} {{ usuario.apellido }}
   .card-body
     form
     .form-group.row
       label.col-sm-2.col-form-label(for="usuario-username") Usuario
       .col-sm-10
-        input.form-control(type="text", id="usuario-username", [value]="_authService.usuario.username", disabled="")
+        input.form-control(type="text", id="usuario-username", [value]="usuario.username", disabled="")
     .form-group.row
       label.col-sm-2.col-form-label(for="usuario-nombre") Nombre
       .col-sm-10
-        input.form-control(type="text", id="usuario-nombre", [value]="_authService.usuario.nombre", disabled="")
+        input.form-control(type="text", id="usuario-nombre", [value]="usuario.nombre", disabled="")
     .form-group.row
       label.col-sm-2.col-form-label(for="usuario-apellido") Apellido
       .col-sm-10
-        input.form-control(type="text", id="usuario-apellido", [value]="_authService.usuario.apellido", disabled="")
+        input.form-control(type="text", id="usuario-apellido", [value]="usuario.apellido", disabled="")
     .form-group.row
       label.col-sm-2.col-form-label(for="usuario-email") Email
       .col-sm-10
-        input.form-control(type="text", id="usuario-email", [value]="_authService.usuario.email", disabled="")
+        input.form-control(type="text", id="usuario-email", [value]="usuario.email", disabled="")
     .form-group.row
       label.col-sm-2.col-form-label(for="usuario-roles") Roles
       .col-sm-10
-        span.badge.badge-pill.badge-info.mx-1.float-left(id="usuario-roles", *ngFor="let role of _authService.usuario.roles") {{ role }}
+        span.badge.badge-pill.badge-info.mx-1.float-left(id="usuario-roles", *ngFor="let role of usuario.roles") {{ role }}

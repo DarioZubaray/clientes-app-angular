@@ -7,7 +7,7 @@
         <label class="col-form-label col-sm-2" for="">Nombre</label>
         <div class="col-sm-6">
           <input class="form-control" type="text" [(ngModel)]="producto.nombre" name="nombre" #nombre="ngModel" required="" minlength="4"/>
-          <div class="alert alert-danger my-3" *ngIf="producto.invalid &amp;&amp; (nombre.dirty || nombre.touched)">
+          <div class="alert alert-danger my-3" *ngIf="nombre.invalid &amp;&amp; (nombre.dirty || nombre.touched)">
             <div *ngIf="nombre.errors.required">El Nombre es requerido</div>
             <div *ngIf="nombre.errors.minlength">El Nombre debe tener al menos 4 caracteres</div>
           </div>

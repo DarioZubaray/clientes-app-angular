@@ -7,7 +7,7 @@
         label.col-form-label.col-sm-2(for='') Nombre
         .col-sm-6
           input.form-control(type='text', [(ngModel)]='producto.nombre', name='nombre', #nombre='ngModel', required="", minlength="4")
-          .alert.alert-danger.my-3(*ngIf='producto.invalid && (nombre.dirty || nombre.touched)')
+          .alert.alert-danger.my-3(*ngIf='nombre.invalid && (nombre.dirty || nombre.touched)')
             div(*ngIf='nombre.errors.required') El Nombre es requerido
             div(*ngIf='nombre.errors.minlength') El Nombre debe tener al menos 4 caracteres
 
