@@ -13,10 +13,14 @@ export class HeaderComponent implements OnInit {
 
   faDragon = faDragon;
   titulo: string = 'AngularSpring';
+  isAuthenticated: boolean;
+  username: string;
 
   constructor(private _authService: AuthService, public router: Router) { }
 
   ngOnInit() {
+    this.isAuthenticated = this._authService.isAuthenticated();
+    this.username = this._authService.usuario.username;
   }
 
   logout(): void {

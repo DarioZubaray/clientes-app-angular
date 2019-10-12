@@ -116,7 +116,7 @@ export class FacturasComponent implements OnInit {
     if (facturaForm.form.valid && this.factura.itemFactura.length > 0) {
       this._facturaService.create(this.factura).subscribe((factura: Factura) => {
         swal('Nueva Factura', `Factura ${factura.descripcion} creada con éxito`, 'success');
-        this.router.navigate(['/clientes']);
+        this.router.navigate(['/facturas', factura.id]);
       });
     }
   }

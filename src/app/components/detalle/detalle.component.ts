@@ -21,6 +21,7 @@ export class DetalleComponent implements OnInit {
   progreso: number = 0;
   isAdmin: boolean;
   isUser: boolean;
+  modal: any;
   faPlus = faPlus;
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
@@ -32,6 +33,7 @@ export class DetalleComponent implements OnInit {
               private _facturaService: FacturaService) { }
 
   ngOnInit() {
+    this.modal = this._modalService.modal;
     this.isAdmin = this._authService.hasRole('ROLE_ADMIN');
     this.isUser = this._authService.hasRole('ROLE_USER');
   }

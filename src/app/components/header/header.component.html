@@ -9,9 +9,9 @@
       <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/directiva">Directivas</a></li>
     </ul>
     <ul class="navbar navbar-right">
-      <li><a class="btn btn-outline-primary" *ngIf="!_authService.isAuthenticated()" routerLink="/login">Login</a></li>
-      <li class="dropdown" *ngIf="_authService.isAuthenticated()">
-        <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hola, {{ this._authService.usuario.username }}</button>
+      <li><a class="btn btn-outline-primary" *ngIf="!isAuthenticated" routerLink="/login">Login</a></li>
+      <li class="dropdown" *ngIf="isAuthenticated">
+        <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hola, {{ username }}</button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" routerLink="/perfil">Mi Perfil</a>
           <div class="dropdown-divider"></div>
           <button class="dropdown-item" type="submit" (click)="logout()">Cerrar sesión</button>

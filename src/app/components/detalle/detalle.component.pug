@@ -1,4 +1,4 @@
-.abrir-modal.animacion.fadeIn(*ngIf='this._modalService.modal')
+.abrir-modal.animacion.fadeIn(*ngIf='modal')
   .modal(tabindex='-1', role='dialog')
     .modal-dialog.modal-lg(role='document')
       .modal-content
@@ -16,7 +16,7 @@
                   li.list-group-item {{ cliente.email }}
                   li.list-group-item {{ cliente.createAt }}
                   li.list-group-item {{ cliente.region.nombre }}
-                .input-group.mb-3(*ngIf="_authService.hasRole('ROLE_ADMIN')")
+                .input-group.mb-3(*ngIf="isAdmin")
                   .custom-file
                     input#inputGroupFile04.custom-file-input((change)='seleccionarFoto($event)', type='file', aria-describedby='inputGroupFileAddon04')
                     label.custom-file-label(for='inputGroupFile04') Seleccionar Foto

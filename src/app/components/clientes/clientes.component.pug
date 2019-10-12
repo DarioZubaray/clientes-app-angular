@@ -9,7 +9,7 @@ detalle-cliente(*ngIf="clienteSeleccionado", [cliente]="clienteSeleccionado")
   div.card-body.text-dark('*ngIf'="habilitar")
     h5.card-title Listado de clientes
     .my-2.text-left
-      button.btn.btn-rounded.btn-success(*ngIf="_authService.hasRole('ROLE_ADMIN')", [routerLink]="['/clientes/forma']") Crear
+      button.btn.btn-rounded.btn-success(*ngIf="isAdmin", [routerLink]="['/clientes/forma']") Crear
         fa-icon.text-white.mx-1([icon]="faPlus")
 
     .alert.alert-info('*ngIf'="clientes?.length === 0") No hay registros que mostrar.
