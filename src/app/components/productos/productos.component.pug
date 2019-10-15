@@ -11,7 +11,7 @@
         fa-icon.text-white.mx-1([icon]="faPlus")
 
     .alert.alert-info('*ngIf'="productos?.length === 0") No hay registros que mostrar.
-    table.table.table-hover('*ngIf'="productos?.length > 0")
+    table.table.table-hover.table-bordered.table-sm.table-striped.table-responsive('*ngIf'="productos?.length > 0")
       thead
         tr
           th(*ngIf="isUser") id
